@@ -30,8 +30,8 @@ gem 'gon', '~> 5.2.3'
 
 # Gemfile
 gem 'aws-sdk', '~> 1.6'
-gem 'pg'
-# gem 'mysql2' shit
+# gem 'pg'
+gem 'mysql2'# shit
 gem 'devise'
 gem 'paperclip', '~> 4.2'
 gem 'mini_magick'
