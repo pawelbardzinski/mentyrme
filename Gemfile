@@ -25,7 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Gemfile
 gem 'aws-sdk', '~> 1.6'
-gem 'mysql2'
+gem 'pg'
+# gem 'mysql2' shit
 gem 'devise'
 gem 'paperclip', '~> 4.2'
 gem 'mini_magick'
@@ -57,4 +58,3 @@ group :development, :test do
   gem 'sqlite3'
   gem 'dotenv-rails'
 end
-
