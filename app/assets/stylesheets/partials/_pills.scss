@@ -1,0 +1,25 @@
+
+ul.pills {
+  @extend .clearfix;
+  margin: 20px 0 25px;
+  padding: 0 0 25px;
+  border-bottom: 1px solid $gray-light;
+  &.no-border {
+    border-bottom: 0;
+  }
+  > li {
+    position: relative;
+    display: block;
+    float: left;
+    display: inline-block;
+    margin-right: 15px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    background-color: #f0f0f0;
+    color: #82888a;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    text-transform: none;
+  }
+}

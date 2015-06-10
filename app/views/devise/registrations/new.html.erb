@@ -1,0 +1,45 @@
+<div class="col-md-8 col-md-offset-2">
+
+  <div class="container-onboard container">
+
+    <h1>Join MentyrMe</h1>
+
+    <p class="row no-gutters">
+      Share your skills by mentoring, coaching & teaching others who want to learn.
+      It's your expertise, so you set your rate and make some cash.
+    </p>
+
+    <%= simple_form_for resource, html: { class: 'form-half' }, as: resource_name, url: registration_path(resource_name) do |f| %>
+
+        <%= f.input :first_name, label: false, placeholder: "First Name" %>
+
+
+        <%= f.input :last_name, label: false, placeholder: "Last Name" %>
+
+
+        <%= f.input :email, as: :email, label: false, placeholder: "Email Address" %>
+
+
+        <%= f.input :zip_code, label: false, placeholder: "Zip Code" %>
+
+
+        <%= f.input :password, as: :password, label: false, placeholder: "Password", autocomplete: "off" %>
+
+
+        <%= f.input :password_confirmation, as: :password, label: false, placeholder: "Confirm Password", autocomplete: "off" %>
+
+        <div class="actions margin-bot">
+          <%= f.submit "Create an Account", class: 'form-control button3d' %>
+        </div>
+        <%= devise_error_messages! %>
+    <% end %>
+
+    <p class="terms-text">By signing up you agree to our Terms of Use, Privacy Policy and Cookie Policy.</p>
+
+  </div>
+
+  <p class="form-footer">
+    Already have an account? <%= link_to "Sign in", new_user_session_path %>
+  </p>
+
+</div>

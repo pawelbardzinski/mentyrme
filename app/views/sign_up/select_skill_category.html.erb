@@ -1,0 +1,20 @@
+<div class="col-md-8 col-md-offset-2">
+  <nav class="tabs">
+  	<ul class="row">
+  		<li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_skill_category' %>">Services</a></li>
+  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'about_you' %>">About You</a></li>
+  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_availability' %>">Availability</a></li>
+    </ul>
+  </nav>
+  <div class="container-mentor-onboard skills container">
+  	<h1>What would you like to teach?</h1>
+    <%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
+    <%= render "/_shared/profile_partials/skill_category", f: f %>
+    <p class="right">
+      <%= hidden_field_tag 'during_registration', true %>
+      <%= submit_tag "Continue", class: 'form-control button3d' %>
+      <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+    </p>
+  </div>
+</div>
+<% end %>

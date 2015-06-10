@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  location: MyString
+  online_meeting: false
+  category_id: 1
+  mentor_id: 1
+  mentee_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  location: MyString
+  online_meeting: false
+  category_id: 1
+  mentor_id: 1
+  mentee_id: 1

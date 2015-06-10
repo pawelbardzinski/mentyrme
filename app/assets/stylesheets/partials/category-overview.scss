@@ -1,0 +1,63 @@
+.category-overview {
+  h1 {
+    margin-top: 10px;
+    margin-bottom: 60px;
+    font-family: museo-sans-rounded, sans-serif;
+    color: #262626;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .row {
+    @media (max-width: 767px) {
+      margin-bottom: 0;
+    }
+  }
+  .category-widget {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    div {
+      min-height: 340px;
+      max-height: 340px;
+      padding: 50px 25px;
+      padding-top: 125px;
+      padding-bottom: 125px;
+      background: url("/assets/mentor-category/category-home.jpg");
+      background-position: 50% 50%;
+      background-size: cover;
+      color: $white;
+      border-bottom: 3px solid #e6e6e6;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 300;
+      text-align: center;
+      @media (max-width: 767px) {
+        margin-bottom: 25px;
+        min-height: 0px;
+      }
+    }
+    &:hover div {
+      border-bottom: 3px solid $orange;
+    }
+    &.home-improvement div{
+      background-image: url("/assets/mentor-category/category-home.jpg");
+    }
+    &.interior-design div{
+      background-image: url("/assets/mentor-category/category-interior.jpg");
+    }
+    &.landscape-design div{
+     background-image: url("/assets/mentor-category/category-landscape.jpg");
+    }
+    &.professional-organization div{
+      background-image: url("/assets/mentor-category/category-org.jpg");
+    }
+    &.food div{
+      background-image: url("/assets/mentor-category/category-food.jpg");
+    }
+    &.dog-training div{
+      background-image: url("/assets/mentor-category/category-dog.jpg");
+    }
+  }
+}

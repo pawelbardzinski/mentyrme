@@ -1,0 +1,28 @@
+<% @current_availability.each do |idx| %>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading<%= idx.id %>">
+          <h2 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= idx.id %>" aria-expanded="true" aria-controls="collapse<%= idx.id %>"  class="collapsed"><%= Date::DAYNAMES[idx[:day_number]] %><%= image_tag("arrow-down@2x.svg", width: '15px', class: "list-arrow") %></a></h2>
+        </div>
+        <div id="collapse<%= idx.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= idx.id %>">
+          <div class="panel-body checkboxes">
+            <% @availability_periods.each do |period| %>
+                <div class="checkbox-row">
+                  <label>
+                    <%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][availability_period_ids][]", period.id, (idx.get_availability_period_ids.include? period.id) %>
+
+                    <%= period.name %>
+                  </label>
+                </div>
+            <% end %>
+            <p class="custom-timeslots">
+            <% @time_slots.each do |slot| %>
+            <%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][time_slot_ids][]", slot.id, (idx.get_time_slot_ids.include? slot.id) %>
+            <span class="custom-time-slot"><%= slot.start_time.strftime("%l%P") %> - <%= slot.end_time.strftime("%l%P") %></span> 
+            <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

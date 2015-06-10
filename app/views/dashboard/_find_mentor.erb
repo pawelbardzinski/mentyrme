@@ -1,0 +1,23 @@
+<% body_class "page-find-mentor" %>
+<section class="category-overview">
+
+  <h1>Find a Mentor</h1>
+
+  <% @categories.in_groups_of(3).each do |category| %>
+
+      <div class="row">
+        <% category.each do |category| %>
+        <div class="text-center col-sm-4">
+
+              <%= link_to booking_find_mentor_basics_path(category_url_slug: category.url_slug), { :class => category.name.downcase.gsub(" ", "-") + " category-widget", :title=> category.name } do %>
+
+                  <div><h2><%= category.name %></h2> </div>
+
+              <% end %>
+        </div>
+        <% end %>
+      </div>
+
+  <% end %>
+
+</section>

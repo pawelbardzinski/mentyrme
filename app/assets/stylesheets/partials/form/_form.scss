@@ -1,0 +1,101 @@
+.form-group {
+
+  margin-bottom: 5px;
+  @media (min-width: $screen-sm) {
+    margin-bottom: $form-control-vertical-margin;
+  }
+
+  input {
+    box-shadow: inherit;
+    font-size: 14px;
+    font-weight: 300;
+  }
+}
+
+.form-footer {
+  font-size: 14px;
+  text-align: center;
+}
+
+form .margin-bot {
+  margin-bottom:$form-control-vertical-margin;
+}
+
+.actions {
+  text-align: center;
+  margin-top: $form-control-vertical-margin;
+  @media (min-width: $screen-sm) {
+     text-align: left;
+     margin-top: 0;
+  }
+}
+
+.form-half{
+
+  @media (min-width: $screen-sm) {
+    .form-group {
+      float: left;
+      width: 50%;
+      padding-right: 7.5px;
+      padding-left: 0;
+
+      &:nth-child(even) {
+
+        padding-left: 7.5px;
+        padding-right: 0;
+
+      }
+    }
+  }
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline {
+  display: none;
+}
+
+#error_explanation {
+  font-size: 12px;
+  h2 {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  ul {
+    margin-bottom: 15px;
+    li {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.checkbox-button {
+  background: $white;
+  border: 2px solid $gray-light;
+  border-radius: $border-radius-base; 
+  color: $input-color;
+  padding: 5px 15px;
+  margin: 5px 5px 0;
+  font-size: 13px;
+  display: inline-block;
+  text-decoration: none;
+
+  &:focus {
+    color: $input-color;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &.checked {
+    text-decoration: none;
+    background: $orange;
+    color: $white;
+  } 
+
+  .checked:focus {
+    color: $white;
+  }
+}

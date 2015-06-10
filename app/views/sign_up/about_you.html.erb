@@ -1,0 +1,13 @@
+<h1>Edit Your Info</h1>
+
+<p>
+	Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
+</p>
+
+<%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
+	<%= render "/_shared/profile_partials/about_you", f: f %>
+	<p>
+		<%= hidden_field_tag 'during_registration', true %>
+		<%= f.submit "Continue" %>
+	</p>
+<% end %>

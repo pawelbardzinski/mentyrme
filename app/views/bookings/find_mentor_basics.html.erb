@@ -1,0 +1,42 @@
+<!--Find mentor basics-->
+<% body_class "page-mentor-basics page-bg" %>
+
+<div class="col-md-8 col-md-offset-2">
+
+    <div class="container-mentor-onboard container">
+
+    <h1><%= @category.name %></h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+
+
+<!-- form_tag booking_find_mentor_details_path, method: :post do |f| -->
+
+    <%= form_tag booking_find_mentors_browse_path, method: :post do |f| %>
+
+        <div class="checkboxes">
+            <% @category.tags.each do |tag| %>
+              <div class="checkbox-row-booking">
+                <label>
+                  <%= check_box_tag "bookings[tag_ids][]", tag.id, (@current_tag_ids.include? tag.id) %>
+                  <%= tag.name %>
+                </label>
+              </div>
+            <% end %>
+        </div>
+
+        <p class="right">
+            <%= hidden_field_tag 'category_id', @category.id %>
+            <%= submit_tag "Continue", class: 'form-control button3d' %>
+            <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+        </p>
+
+    <% end %>
+
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,64 @@
+<!--Find mentor notes-->
+<% body_class "page-mentor-notes page-bg" %>
+<div class="col-md-8 col-md-offset-2">
+
+  <nav class="tabs">
+    <ul class="row">
+      <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
+      <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+      <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+    </ul>
+  </nav>
+  <div class="container-mentor-onboard container">
+
+    <h1>Teach Me How to Lay Tile</h1>
+
+    <ul class="pills">
+      <li><%= @category.name %></li>
+      <% @booking.tags.each do |tag| %>
+          <li><%= tag.name %></li>
+      <% end %>
+    </ul>
+    <div class="session-details">
+        <strong>Description:<br></strong>
+        <p><%= @booking.description %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+
+        <strong>Session Details:<br></strong>
+        <p>
+          <%= @booking.location %> 311 Main Street. Beverly Hills, CA 90210 <br>
+          Saturday, May 23rd from 10:00am - 11:00am <br>
+          $75 per session
+        </p>
+    </div>
+
+    <ul class="pills no-border">
+      <li>Edit</li>
+      <li>Cancel Session</li>
+    </ul>
+
+    <%= form_for :booking, :url => booking_find_mentor_finalize_path, method: :put do |f| %>
+
+        <%= hidden_field_tag 'booking[is_finalized]', 1 %>
+        <%= f.submit "Hire Mentor", class: 'form-control button3d btn-block' %>
+
+    <% end %>
+
+  </div>
+
+  <p class="form-footer">
+    Are you lost?  <a href="/users/sign_in">Start Over</a>
+  </p>
+
+</div>
+
+
+
+<!--   TITLE:<%= @booking.title %><br/>
+    online meeting? <%= @booking.online_meeting %><br/>
+    <%= @booking.mentor_id %> -->
+
+
+ 
+ 
+
+

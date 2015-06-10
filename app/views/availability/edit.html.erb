@@ -1,0 +1,10 @@
+<h1>Availability</h1>
+
+<%= form_tag update_availability_profile_path, method: :put do |f| %>
+	
+	<%= render "/_shared/profile_partials/availability", f: f %>
+	
+	<p>
+		<%= submit_tag "Continue" %>
+	</p>
+<% end %>

@@ -1,0 +1,85 @@
+<!--Find mentor location -->
+<% body_class "page-mentor-location page-bg" %>
+<div class="col-md-8 col-md-offset-2">
+
+  <nav class="tabs">
+    <ul class="row">
+      <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
+      <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+      <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+    </ul>
+  </nav>
+
+  <div class="container-mentor-onboard container">
+
+    <h1>When Should You Meet?</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+
+    <%= form_for :booking, :url => booking_find_mentor_review_path, :html => { :class => "simple_form"}, method: :put do |f| %>
+
+        <div class="form-group string optional user_first_name">
+          <%= f.label :location, "Location" %>
+          <div class="get-location">
+          <%= f.text_field :location, autocomplete: "off", class: 'form-control'  %>
+              <button class="btn btn-default get-location" onclick="getUserLocation();return false;">Get Location</button>
+          </div>
+        </div>
+
+        <script>function getUserLocation(){
+            alert("getUserLocation would be called here")
+        }</script>
+
+        <div class="checkboxes">
+              <div class="checkbox-row-booking">
+                <label>
+                  <%= f.check_box :online_meeting, {}, true, false %>
+                  <%= f.label "This will take place via video chat / online." %>
+                </label>
+              </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group string optional">
+                <label for="exampleInputName2">Date</label>
+                <select class="form-control">
+                  <option>Date</option>
+                  <option>Date</option>
+                  <option>Date</option>
+                  <option>Date</option>
+                  <option>Date</option>
+                  <option>Date</option>
+                </select>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <div class="col-lg-6">
+            <div class="form-group string optional">
+              <label for="exampleInputName2">Time</label>
+              <select class="form-control">
+                <option>8:00 – 9:00 AM</option>
+                <option>8:00 – 9:00 AM</option>
+                <option>8:00 – 9:00 AM</option>
+                <option>8:00 – 9:00 AM</option>
+                <option>8:00 – 9:00 AM</option>
+              </select>
+          </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+
+
+        <p class="right">
+          <%= hidden_field_tag 'current_booking_id', @booking.id %>
+          <%= f.submit "Continue", class: 'form-control button3d' %>
+          <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+        </p>
+
+    <% end %>
+
+  </div>
+
+  <p class="form-footer">
+    Are you lost?  <a href="/users/sign_in">Start Over</a>
+  </p>
+
+</div>

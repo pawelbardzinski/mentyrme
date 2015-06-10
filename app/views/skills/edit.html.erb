@@ -1,0 +1,10 @@
+<h1>What Do You Want To Teach?</h1>
+<p>
+	Choose a category
+</p>
+
+<%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
+		
+		<%= render "/_shared/profile_partials/skill_category", f: f %>
+		<%= f.submit "Continue" %>
+<% end %>

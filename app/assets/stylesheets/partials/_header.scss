@@ -1,0 +1,175 @@
+header {
+  margin-bottom: $navbar-wrap-margin-bottom;
+}
+.navbar.navbar-main {
+  border-bottom: 1px solid $gray-light;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  margin-bottom: 0;
+  background-color: #fff;
+  .navbar-collapse {
+    padding-bottom: 25px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 0;
+    background-color: white;
+    @media (min-width: $grid-float-breakpoint) {
+      padding-bottom: 0;
+    }
+  }
+  .navbar-nav.signed-out {
+    @media (min-width: $grid-float-breakpoint) {
+      float: right;
+    }
+  }
+  .navbar-brand {
+    float: left;
+    padding: 8px 25px;
+    font-size: 18px;
+    line-height: 20px;
+    height: auto;
+  }
+
+  li {
+    a {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-top: 22px;
+      padding-bottom: 22px;
+      font-family: museo-sans-rounded, sans-serif;
+      color: $gray-darker;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      max-width: 728px;
+      margin: 0 auto;
+      &:hover {
+        color: $gray-darker;
+        background: $gray-lighter;
+      }
+    }
+    &.signup-link a {
+      color: $orange;
+    }
+  }
+
+  .avatar-nav img{
+    width: 30px;
+    height: 30px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+  }
+  .name-nav {
+    color: $gray-darker;
+    font-size: 13px;
+    font-weight: 400;
+    padding-right: 0px;
+    padding-left: 10px;
+    letter-spacing: 0px;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+  .chat-icon-nav img {
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  .btn-default {
+      margin: 10px auto;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 13px;
+      @media (min-width: $grid-float-breakpoint) {
+        width: auto;
+        margin: 16px 10px;
+        padding: 5px 15px;
+        border-radius: 5px;
+
+      }
+  }
+
+}
+.navbar.navbar-secondary {
+  padding: 0;
+  min-height: inherit;
+  border: 0;
+  background-color: #fff;
+
+
+  @media (min-width: $grid-float-breakpoint) {
+    background-color: #000;
+  }
+  .navbar-header {
+    min-height: 62px;
+    background-color: #000;
+
+    @media (min-width: $grid-float-breakpoint) {
+      min-height: inherit;
+    }
+  }
+  .container {
+    @media (max-width: $grid-float-breakpoint) {
+      width: 100%;
+    }
+  }
+  .dashoboard-link {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+
+    color: #cacccd;
+
+    @media (min-width: $grid-float-breakpoint) {
+      display: none;
+    }
+  }
+  &.navbar-inverse  .navbar-toggle {
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 13px;
+      &:hover, &:focus {
+        background-color: transparent;
+      }
+     .icon-arrow-down {
+       background: url("/assets/icons/icon-nav-arrow.png");
+       display: block;
+       width: 12px;
+       height: 9px;
+       background-size: 100%;
+      }
+
+
+  }
+
+
+  li a {
+    display: inline-block;
+    padding: 3px 25px 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 36px;
+    font-weight: 300;
+    text-decoration: none;
+    color: $gray-darker;
+    &:hover {
+      color: $blue;
+    }
+    @media (min-width: $grid-float-breakpoint) {
+      color: #cacccd;
+      &:hover {
+        color: $white;
+      }
+    }
+    &.active {
+      @media (min-width: $grid-float-breakpoint) {
+        border-bottom: 3px solid #cacccd;
+      }
+    }
+
+  }
+
+}

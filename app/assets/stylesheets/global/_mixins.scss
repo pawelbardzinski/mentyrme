@@ -1,0 +1,46 @@
+// Vertical and Horizontal Center
+// Both V & H: @include center;
+// horizontal: @include center(true, false);
+// vertical: @include center(false, true);
+
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50);
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+  }
+}
+
+//Button with bottom border / 3d look
+//TODO: load some of these details into variables
+@mixin button3d($color: $orange, $width: auto) {
+  display: inline-block;
+  width: $width;
+  padding: 15px 25px 12px;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: $color;
+  font-family: museo-sans-rounded, sans-serif;
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+}

@@ -1,0 +1,40 @@
+	<%= image_tag @profile.avatar.image_file.blank? ? "user_avatar_placeholder_image.png" : @profile.avatar.image_file.url(:thumb) %>
+	<%= f.simple_fields_for :avatar do |photo| %>
+		<p>
+			<%= photo.label :image_file, "Profile Photo" %>
+			<%= photo.input :image_file, as: :file, label: false %>
+		</p>
+	<% end %>
+	<%= f.simple_fields_for :skills do |skill| %>
+		<%= skill.simple_fields_for :rate do |rate| %>
+			<p>
+				<%= rate.label :amount, "Your Rate" %>
+				<%= rate.input :amount, label: false %>
+				<%= rate.input :type, as: :select, label: false, collection: rate_types %> 
+			</p>
+		<% end %>
+	<% end %>
+	<p>
+		<%= f.label :one_line_description, "One-Liner" %>
+		<%= f.input :one_line_description, label: false, placeholder: "Describe yourself in 5 words..." %>
+	</p>
+	<p>
+		<%= f.label :expertise_description, "Describe Your Expertise" %>
+		<%= f.input :expertise_description, label: false, placeholder: "Write something..." %>
+	</p>
+	<p>
+		<%= f.label :sales_pitch, "Why Should Someone Learn From You?" %>
+		<%= f.input :sales_pitch, label: false, placeholder: "Write something..." %>
+	</p>
+	<p>
+		<%= f.label :employer, "Work/Employer" %>
+		<%= f.input :employer, label: false, placeholder: "Where do you work?" %>
+	</p>
+	<p>
+		<%= f.label :school, "School" %>
+		<%= f.input :school, label: false, placeholder: "Where did you go to school?" %>
+	</p>
+	<p>
+		<%= f.label :languages, "Languages" %>
+		<%= f.input :languages, label: false, placeholder: "What languages do you speak?" %>
+	</p>

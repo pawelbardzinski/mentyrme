@@ -1,0 +1,81 @@
+<!--Find mentor details-->
+<% body_class "page-mentor-details page-bg" %>
+<div class="col-md-8 col-md-offset-2">
+
+  <nav class="tabs">
+  <ul class="row">
+    <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
+    <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+    <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+  </ul>
+  </nav>
+
+  <div class="container-mentor-onboard container">
+
+    <h1>Teach Me How to Lay Tile</h1>
+
+    <ul class="pills">
+      <li>Home Improvement</li>
+      <li>Tiling</li>
+    </ul>
+    <div class="session-details">
+      <strong>Description:<br></strong>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+      <strong>Description:<br></strong>
+      <p>$75 per session</p>
+    </div>
+    <%= form_for :booking, :url => booking_find_mentor_locations_path, method: :put do |f| %>
+
+        <div style="display: none">
+          <%= f.label :title, "Create a Title for your Session" %><br />
+          <%= f.text_field :title, autocomplete: "off" %>
+        </div>
+
+        <div style="display: none">
+          <%= f.label :description, "Describe What You Want to Learn" %><br />
+          <%= f.text_area :description, autocomplete: "off" %>
+        </div>
+
+        <p class="right">
+          <%= hidden_field_tag 'current_booking_id', @booking.id %>
+          <%= f.submit "Continue", class: 'form-control button3d'  %>
+        </p>
+
+    <% end %>
+
+  </div>
+  <p class="form-footer">
+    Are you lost?  <a href="/users/sign_in">Start Over</a>
+  </p>
+
+</div>
+
+
+
+<!--
+<%= form_for :booking, :url => booking_find_mentor_locations_path, method: :put do |f| %>
+
+        <div class="field">
+          <%= f.label :title, "Create a Title for your Session" %><br />
+          <%= f.text_field :title, autocomplete: "off" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description, "Describe What You Want to Learn" %><br />
+          <%= f.text_area :description, autocomplete: "off" %>
+        </div>
+
+        <%= hidden_field_tag 'current_booking_id', @booking.id %>
+
+    <%= f.submit "Continue" %>
+
+<% end %>
+-->
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+development:
+  access_key_id: AKIAJTWW7B2BZES2VNNA
+  secret_access_key: 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
+  bucket: dev-mentyrme
+
+
+dev-server: 
+  access_key_id: AKIAJTWW7B2BZES2VNNA
+  secret_access_key: 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
+  bucket: dev-mentyrme

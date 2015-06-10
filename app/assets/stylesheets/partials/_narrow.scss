@@ -1,0 +1,43 @@
+.container-onboard {
+	display: block;
+	width: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: $padding-large-vertical;
+	padding: 50px;
+	border: 1px solid $gray-light;
+	background-color: $white;
+
+	h1 {
+		margin: 0 auto 10px;
+        @media (max-width: $screen-sm) {
+          text-align: center;
+        }
+      & + p {
+        margin-bottom: 25px;
+      }
+	}
+  p {
+    @media (max-width: $screen-sm) {
+      text-align: center;
+    }
+  }
+  .form-group {
+    margin-bottom: 25px;
+    
+    input {
+      @media (max-width: $screen-sm) {
+        text-align: center;
+      }
+    }
+
+    label {
+      font-weight: normal;
+    }
+  }
+}
+
+.container-mentor-onboard {
+  @extend .container-onboard;
+  padding: 25px;
+}

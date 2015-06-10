@@ -1,0 +1,2 @@
+class HourlyRate < Rate
+end

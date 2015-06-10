@@ -1,0 +1,65 @@
+<header>
+    <nav class="navbar navbar-inverse navbar-main">
+      <div class="<% if signed_in? %>container-fluid<% else %>container<% end %>">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to(image_tag("logo@2x.png", width: '150px'), root_path, :class=>"navbar-brand") %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+          <% if signed_in? %>
+              <ul class="nav navbar-nav">
+                    <li><a href="#about">Dashboard</a></li>
+                    <li><a href="#contact">Discover</a></li>
+                    <li class="hidden-lg hidden-md"><a href="#account">My Account</a></li>
+                    <li class="hidden-lg hidden-md"><a href="#notifications">Notifications</a></li>
+                    <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+              </ul>
+
+              <div class="navbar-right">
+                <a class="avatar-nav visible-md-inline-block visible-lg-inline-block" href="#"><%= image_tag("avatar/avatar.png", width: '125px') %></a>
+                <a class="name-nav visible-md-inline-block visible-lg-inline-block" href="">Gordon</a>
+                <a class="chat-icon-nav visible-md-inline-block visible-lg-inline-block" href="#"><%= image_tag("icons/icon-chat.svg", width: '30px') %></a>
+                <%= link_to "Find a Mentor", find_mentor_path, class: "btn btn-default" %>
+              </div>
+
+          <% else %>
+              <ul class="nav navbar-nav signed-out">
+                    <li><a  href="#">How It Works</a></li>
+                    <li><a  href="#">Be a Mentor</a></li>
+                    <li><%= link_to "Login", new_user_session_path %></li>
+                    <li class="signup-link"><%= link_to "Sign Up", sign_up_type_selection_path %></li>
+              </ul>
+          <% end %>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <% if signed_in? %>
+        <nav class="navbar navbar-inverse navbar-secondary">
+          <div class="container">
+            <div class="navbar-header">
+              <div class="dashoboard-link" href="#dashboard">Dashboard</div>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-secondary" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-arrow-down"></span>
+              </button>
+
+            </div>
+            <div id="navbar-secondary" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+              <ul class="nav navbar-nav">
+                    <li><a class="visible-md-inline-block visible-lg-inline-block" href="#dashboard">Dashboard</a></li>
+                    <li><a href="#sessions">My Sessions</a></li>
+                    <li><a href="#messages">Messages</a></li>
+                    <li><%= link_to "Profile", edit_profile_path %></li>
+                    <li><a href="#account">Account</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+    <% end %>
+</header>

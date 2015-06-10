@@ -1,0 +1,24 @@
+<p>
+<ul>
+	<li><%= link_to "Basic Info", edit_profile_path  %></li>
+	<li><%= link_to "Services", edit_profile_skill_path(@skill_id)  %></li>
+	<li><%= link_to "Availability", edit_profile_availability_path %></li>
+	<li><%= link_to "Photos", profile_skill_photos_path(@skill_id)  %></li>
+	<li><%= link_to "Verifications", profile_verifications_path %></li></li>
+	<li><a href="">Reviews</a></li>
+</ul>
+<%= link_to "View Profile", profile_path %>
+</p>
+
+<h1>Edit Your Info</h1>
+
+<p>
+	Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
+</p>
+
+<%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
+	<%= render "/_shared/profile_partials/about_you", f: f %>
+	<p>
+		<%= f.submit "Save Changes" %>
+	</p>
+<% end %>

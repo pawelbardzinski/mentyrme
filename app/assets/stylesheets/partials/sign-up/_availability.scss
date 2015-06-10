@@ -1,0 +1,48 @@
+.container-mentor-onboard {
+	&.skills {
+		h1 {
+			margin-bottom: 35px;
+		}
+		.panel-title {
+			font-size: $font-size-h3;
+			line-height: $font-size-h2;
+		}
+	}
+	.panel {
+		border-radius: 0;
+	}
+
+	.panel-heading {
+		background: #fcfcfc;
+		border-radius: 0;
+	}
+
+	.panel-title {
+		font-size: $font-size-h1;
+		position: relative;
+		
+		a {
+			display: block;
+			text-decoration: none;
+
+			&.collapsed .list-arrow {
+				@extend .rotate0;
+			}
+		}
+
+		.list-arrow {
+			position: absolute;
+			right: 0;
+			top: 0;
+			@extend .rotate180;
+		}
+	}
+
+	.custom-timeslots {
+		display: none;
+	}
+
+	form > p {
+		margin-top: 50px;
+	}
+}

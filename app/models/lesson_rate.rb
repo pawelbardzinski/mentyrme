@@ -1,0 +1,2 @@
+class LessonRate < Rate
+end

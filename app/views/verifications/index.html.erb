@@ -1,0 +1,27 @@
+<div class="row">
+<h1>Get Verified</h1>
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+</p>
+
+
+	<table>
+	<% @validations.each do |validation| %>
+		<tr>
+			<td><%= validation.name %></td>
+			<td>
+				<p><%= validation.description %></p>
+				<% if @user_validation_ids.include?(validation.id) %>
+					<p style="font-weight: bold">
+						<%= validation.label_value.nil? ? "" : validation.value_label + ": "%>
+						<%= Verification.getValidationValue(@verifications, validation.id) %> 
+					</p>
+				<% else %>
+					<%= link_to "Verify Me", "", class: "btn btn-danger" %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+</div>
