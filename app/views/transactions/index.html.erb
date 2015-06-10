@@ -19,6 +19,7 @@
           <td>{{transaction.created_at | date:"MM/dd/yyyy" }}</td>
           <td>{{firstNames[$index]}}&nbsp;{{lastNames[$index]}}</td>
           <td>{{transaction.title}}</td>
+          <td>{{transaction.amount | currency}}</td>
           <td>{{transaction.state}}</td>
           <td><a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state != 'transactions'}}" class="btn btn-default">Make Payment</a></td>
         </tr>
