@@ -13,5 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require angular
+//= require angularjs/rails/resource
+//= require angular-resource
+//= require_tree ./angular
+//= require angular-ui-bootstrap
+//= require underscore
 //= require braintree
 //= require_tree .

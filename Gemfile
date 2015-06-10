@@ -22,6 +22,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'angularjs-rails'
+gem 'angularjs-rails-resource', '~> 2.0.0'
+gem 'underscore-rails'
+gem 'angular-ui-bootstrap-rails', '~> 0.13.0'
+gem 'gon', '~> 5.2.3'
 
 # Gemfile
 gem 'aws-sdk', '~> 1.6'

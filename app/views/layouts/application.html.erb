@@ -8,6 +8,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
 </head>
 <body class="<%= controller.controller_name %> <%= yield (:body_class) %>">
 
@@ -17,7 +18,7 @@
 
           <%= flash_messages %>
           <%= yield %>
-          
+
         </div>
     </div>
 </body>

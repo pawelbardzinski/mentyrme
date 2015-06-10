@@ -5,11 +5,14 @@ class TransactionsController < ApplicationController
 		@transactions = Transaction.where(user_id: current_user.id)
 		@mentor_first_name = []
 		@mentor_last_name = []
-		@transactions.each do |t|
+		@transactions.each do |t| # try map
 			user = User.find(t.pay_to_mentor_id)
 			@mentor_first_name << user.first_name
 			@mentor_last_name << user.last_name
 		end
+		gon.transactions = @transactions.to_json
+		gon.firstNames = @mentor_first_name
+		gon.lastNames = @mentor_last_name
 	end
 
 end

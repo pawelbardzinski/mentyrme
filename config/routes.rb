@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  
+
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'pages#main'
-  devise_for :users, controllers: {registrations: 'users/registrations'} 
+  devise_for :users, controllers: {registrations: 'users/registrations'}
 
   get 'sign_up/start',         to: "sign_up#sign_up_type_selection",     as: "sign_up_type_selection"
   get 'sign_up/select',        to: "sign_up#user_type_selection",        as: "sign_up_user_type_selection"
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'payment/index',         to: "accounts#index",                     as: "payment"
   post 'payment/index',         to: "accounts#create",                    as: "update_payment"
   post 'payment/pay',         to: "accounts#pay",                    as: "process_payment"
-  get 'payment/transaction_result', to:"accounts#transaction_result",    as: "transaction_result" 
+  get 'payment/transaction_result', to:"accounts#transaction_result",    as: "transaction_result"
   get 'payment/index_mentor',         to: "accounts#index_mentor",        as: "index_mentor"
   post 'payment/mentor_save',   to: "accounts#mentor_save",               as: "save_mentor"
   get 'payment/card_added',     to: "accounts#card_added",                as: "card_added"
@@ -29,28 +29,28 @@ Rails.application.routes.draw do
     resources :skills do
       resources :photos
     end
-    resources :verifications 
-   
+    resources :verifications
+
   end
 
   resources :dashboard, only: [:index]
   resources :users, only: [:index]
   resources :categories
   resources :bookings
-   
+
   get 'find-mentor',  to: "dashboard#find_mentor"
   get 'find-mentor/basics/:category_url_slug',  to: "bookings#find_mentor_basics",  as: "booking_find_mentor_basics"
-  post 'find-mentors-browse',  to: "bookings#find_mentors_browse", as: "booking_find_mentors_browse", via: :put 
-  
-  match 'find-mentor-details',  to: "bookings#find_mentor_details", as: "booking_find_mentor_details", via: :put
-  match 'find-mentor-locations',  to: "bookings#find_mentor_locations", as: "booking_find_mentor_locations", via: :put 
-  match 'find-mentor-review',  to: "bookings#find_mentor_review", as: "booking_find_mentor_review", via: :put 
-  get 'find-mentors-public-profile',  to: "bookings#find_mentors_public_profile", as: "booking_find_mentors_public_profile" 
-  match 'find-mentor-finalize',  to: "bookings#find_mentor_finalize", as: "booking_find_mentor_finalize", via: :put 
-  
-  
+  post 'find-mentors-browse',  to: "bookings#find_mentors_browse", as: "booking_find_mentors_browse", via: :put
 
-  
+  match 'find-mentor-details',  to: "bookings#find_mentor_details", as: "booking_find_mentor_details", via: :put
+  match 'find-mentor-locations',  to: "bookings#find_mentor_locations", as: "booking_find_mentor_locations", via: :put
+  match 'find-mentor-review',  to: "bookings#find_mentor_review", as: "booking_find_mentor_review", via: :put
+  get 'find-mentors-public-profile',  to: "bookings#find_mentors_public_profile", as: "booking_find_mentors_public_profile"
+  match 'find-mentor-finalize',  to: "bookings#find_mentor_finalize", as: "booking_find_mentor_finalize", via: :put
+
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

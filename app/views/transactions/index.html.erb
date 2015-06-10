@@ -1,31 +1,29 @@
-<h2>Your Transanctions</h2>
-
-<% unless @transactions == nil %>
-<table style="width: 100%">
-    <tr>
-      <th>Date</th>
-      <th>Pay To</th>
-      <th>Title</th>
-      <th>Amount</th>
-      <th>Status</th>
-    </tr>
-	<% @transactions.each_with_index do |t,i| %>
-    <tr>
-      <td><%= t.created_at.strftime('%m/%d/%Y') %></td>
-      <td><%= @mentor_first_name[i] %>&nbsp;<%= @mentor_last_name[i] %></td>
-      <td><%= t.title %></td>
-      <td>$<%= t.amount.to_s %></td>
-      <td><%= t.state %></td>
-      <% if t.state == 'not paid' %>
-      	<!-- td><input type="submit" value="Make Payment"></td -->
-      	<td><%= link_to "Make Payment", controller: :accounts, action: :index, class: "btn btn-primary", btn_text: "Confirm", transaction_id: t.id, amount: t.amount, mentor_first_name: @mentor_first_name[i], mentor_last_name: @mentor_last_name[i] %></td>
-      <% else %>
-      	<td></td>
-      <% end %>
-    </tr>
-    <% end %>
-</table>
-<% else %>
-		<h3>You have no transactions</h3>
-<% end %>
-
+<div ng-app="app">
+  <div ng-controller="TransactionsCtrl">
+    <h2>Your Transanctions</h2>
+    <div ng-show="{{transactions.length > 0}}">
+      <select class="form-control" name="show-filter" ng-model="selectedState">
+        <option value="transactions">Transactions</option>
+        <option value="future">Future</option>
+        <option value="">All</option>
+      </select>
+    <table style="width: 100%">
+        <tr>
+          <th>Date</th>
+          <th>Pay To</th>
+          <th>Title</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+        <tr ng-repeat="transaction in transactions | filter: { state: selectedState || ''}">
+          <td>{{transaction.created_at | date:"MM/dd/yyyy" }}</td>
+          <td>{{firstNames[$index]}}&nbsp;{{lastNames[$index]}}</td>
+          <td>{{transaction.title}}</td>
+          <td>{{transaction.state}}</td>
+          <td><a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state != 'transactions'}}" class="btn btn-default">Make Payment</a></td>
+        </tr>
+    </table>
+  </div>
+  <h3 ng-hide="{{transactions.length > 0}}">You have no transactions</h3>
+  </div>
+</div>
