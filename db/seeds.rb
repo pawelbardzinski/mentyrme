@@ -59,12 +59,12 @@ User.create(email: "none3@none.com", first_name: "Luke", last_name: "Skywalker",
 User.create(email: "none2@none.com", first_name: "Palpatine", last_name: "Cosinga", zip_code: "91789", merchant_account_id: "palpatine_palpatine_instant_8x9kyk88", password: 'verylongpassword1!')
 User.create(email: "none@none.com", first_name: "Chewbacca", last_name: "Wookiee", zip_code: "91789", merchant_account_id: "chewbacca_chewbacca_instant_h2g64qhy", password: 'verylongpassword1!')
 
-Transaction.create(user_id: 1, pay_to_mentor_id: 5, title: "Teach me how to run an Empire", amount: 999.00, state: 'not paid')
-Transaction.create(user_id: 1, pay_to_mentor_id: 6, title: "I want to Growl really loud", amount: 15.00, state: 'paid')
-Transaction.create(user_id: 1, pay_to_mentor_id: 4, title: "I want to Destroy a Death Star", amount: 125.00, state: 'not paid')
-Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Teach me how to Exceed Speed of Light", amount: 1250.00, state: 'not paid')
-Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Please teach me how to smuggle contraband", amount: 100.00, state: 'paid')
-Transaction.create(user_id: 1, pay_to_mentor_id: 2, title: "I want to have Royal Manners", amount: 250.00, state: 'not paid')
+Transaction.create(user_id: 1, pay_to_mentor_id: 5, title: "Teach me how to run an Empire", amount: 999.00, state: 'future')
+Transaction.create(user_id: 1, pay_to_mentor_id: 6, title: "I want to Growl really loud", amount: 15.00, state: 'transactions')
+Transaction.create(user_id: 1, pay_to_mentor_id: 4, title: "I want to Destroy a Death Star", amount: 125.00, state: 'future')
+Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Teach me how to Exceed Speed of Light", amount: 1250.00, state: 'future')
+Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Please teach me how to smuggle contraband", amount: 100.00, state: 'transactions')
+Transaction.create(user_id: 1, pay_to_mentor_id: 2, title: "I want to have Royal Manners", amount: 250.00, state: 'future')
 
 
 Validation.create(name: 'Verify Your Id', description: 'Lorem ipsome dolor sit amet')
