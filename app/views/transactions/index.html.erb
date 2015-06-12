@@ -3,8 +3,9 @@
     <h2>Your Transanctions</h2>
     <div ng-show="{{transactions.length > 0}}">
       <select class="form-control" name="show-filter" ng-model="selectedState">
-        <option value="transactions">Transactions</option>
+        <option value="completed">Completed</option>
         <option value="future">Future</option>
+        <option value="escrow">In Escrow</option>
         <option value="">All</option>
       </select>
     <table style="width: 100%">
@@ -21,7 +22,8 @@
           <td>{{transaction.title}}</td>
           <td>{{transaction.amount | currency}}</td>
           <td>{{transaction.state}}</td>
-          <td><a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state != 'transactions'}}" class="btn btn-default">Make Payment</a></td>
+          <td><a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state == 'future'}}" class="btn btn-default">Make Payment</a>
+            <a ng-href="/payment/release_escrow?btn_text=Confirm&transaction_id={{transaction.id}}" ng-show="{{transaction.state == 'escrow'}}" class="btn btn-default">Release Escrow</a></td>
         </tr>
     </table>
   </div>
