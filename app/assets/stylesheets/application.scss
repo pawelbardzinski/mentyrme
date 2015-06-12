@@ -6,3 +6,26 @@
 @import 'global';
 @import "partials";
 @import "bookings";
+
+
+div.tab-content form div.row input.form-control{
+  margin-top: 10px;
+  border: 2px solid;
+}
+
+
+.error-container{
+  color: #FA787E;
+}
+
+
+form.ng-invalid.ng-invalid-required.ng-submitted textarea{
+  border: 1px solid #FA787E;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid #FA787E;
+}
+input.ng-valid.ng-touched {
+  border: 1px solid #4cae4c;
+}

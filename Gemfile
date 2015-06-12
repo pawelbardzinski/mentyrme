@@ -30,7 +30,8 @@ gem 'gon', '~> 5.2.3'
 
 # Gemfile
 gem 'aws-sdk', '~> 1.6'
-gem 'mysql2'
+gem 'pg'
+# gem 'mysql2'
 gem 'devise'
 gem 'paperclip', '~> 4.2'
 gem 'mini_magick'
@@ -59,7 +60,6 @@ group :development, :test do
   gem 'spring'
 
   # sqlite for local development
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'dotenv-rails'
 end
-

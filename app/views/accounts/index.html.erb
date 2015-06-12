@@ -3,7 +3,7 @@
 <% end %>
 
 <% if @default_payment != nil %>
-  
+
   <br>
   <h4>Existing Payment Methods</h4>
     <table style="width: 100%">
@@ -33,7 +33,7 @@
           <td><%= card.card_type %></td>
           <td><%= card.last_4 %></td>
           <td><%= card.expiration_month %>/<%= card.expiration_year %></td>
-      <% end %>        
+      <% end %>
     </tr>
   <% end %>
   </table>

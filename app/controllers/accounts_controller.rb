@@ -4,14 +4,14 @@ class AccountsController < ApplicationController
 	def index
 
 		@user = current_user
-		@client_token = Braintree::ClientToken.generate 
+		@client_token = Braintree::ClientToken.generate
 		@mentors = User.where("users.merchant_account_id IS NOT NULL")
 		credit_cards = Braintree::Customer.find(current_user.braintree_id).credit_cards if current_user.braintree_id != nil
 		if @mentors.include?(@user)
 			@mentor_braintree_address = Braintree::MerchantAccount.find(@user.merchant_account_id)
 		end
 
-		
+
 		if current_user.braintree_id && credit_cards.size > 0
 
 			@default_payment = []
@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
 				@default_payment.each do |dp|
 					move_on = true if credit_card.last_4 == dp.last_4 && credit_card.bin == dp.bin && credit_card.expiration_month == dp.expiration_month && credit_card.expiration_year == dp.expiration_year
 				end
-				@default_payment << credit_card unless move_on 
+				@default_payment << credit_card unless move_on
 			end
 
 		else
@@ -32,45 +32,43 @@ class AccountsController < ApplicationController
 	end
 
 	def index_mentor
-
-		@user = current_user
-
+		gon.user = current_user.attributes.to_json
 	end
 
 	def create
 
 		nonce = params[:payment_method_nonce]
 
-		if current_user.braintree_id == nil 
+		if current_user.braintree_id == nil
 
 			result = Braintree::Customer.create(
 				first_name: params[:first_name],
 				last_name: params[:last_name],
 				email: params[:email]
-			) 
-		
+			)
+
 			current_user.update(braintree_id: result.customer.id)
 
 		end
 
 		result = Braintree::PaymentMethod.create(
-			customer_id: current_user.braintree_id, # '11613291', 
-			payment_method_nonce: nonce # "nonce-from-the-client", 
-		)  		
+			customer_id: current_user.braintree_id, # '11613291',
+			payment_method_nonce: nonce # "nonce-from-the-client",
+		)
 
 
 		if result.success?
 
 			current_user.update(default_card_id: result.payment_method.token)
- 				
-  			flash[:notice] = "Card Saved Successfuly." 
 
-		else 
-  			
-			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }" 
+  			flash[:notice] = "Card Saved Successfuly."
+
+		else
+
+			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
 
 		end
-  		
+
   		redirect_to action: :card_added
 
 	end
@@ -104,14 +102,14 @@ class AccountsController < ApplicationController
 		end
 
 
-		if current_user.braintree_id == nil 
+		if current_user.braintree_id == nil
 
 			result = Braintree::Customer.create(
 				first_name: params[:first_name],
 				last_name: params[:last_name],
 				email: params[:email]
-			) 
-		
+			)
+
 			current_user.update(braintree_id: result.customer.id)
 
 		end
@@ -121,15 +119,15 @@ class AccountsController < ApplicationController
 
 			cards = Braintree::Customer.find(current_user.braintree_id).credit_cards
 			cards.each do |card|
-				current_user.update(default_card_id: card.token) if card.last_4 == params[:card][:last_4] && card.expiration_month == params[:card][:expiration_month] && card.expiration_year == params[:card][:expiration_year] && card.card_type == params[:card][:type] 	
+				current_user.update(default_card_id: card.token) if card.last_4 == params[:card][:last_4] && card.expiration_month == params[:card][:expiration_month] && card.expiration_year == params[:card][:expiration_year] && card.card_type == params[:card][:type]
 			end
 
 		else
 
 			payment_method = Braintree::PaymentMethod.create(
-				customer_id: current_user.braintree_id, # '11613291', 
-				payment_method_nonce: nonce # "nonce-from-the-client", 
-			)  		
+				customer_id: current_user.braintree_id, # '11613291',
+				payment_method_nonce: nonce # "nonce-from-the-client",
+			)
 
 			current_user.update(default_card_id: payment_method.payment_method.token)
 
@@ -153,15 +151,15 @@ class AccountsController < ApplicationController
 			# escrow_result = Braintree::Transaction.hold_in_escrow(current_transaction_id)
 
 #			if escrow_result.success?
-				
+
 				transaction.update(state: :escrow, braintree_transaction_id: current_transaction_id)
- 				flash[:notice] = "Funds are now in the Escrow Account" # with #{current_user.default_card_id}" 
+ 				flash[:notice] = "Funds are now in the Escrow Account" # with #{current_user.default_card_id}"
 
  			else
 
  				flash[:alert] = "Can't keep funds in Escrow"
 
- 			end 
+ 			end
 
 =begin
  			Rolling transaction back..."
@@ -185,13 +183,13 @@ class AccountsController < ApplicationController
 
 
 =begin
-		else 
-  			
-			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }" 
+		else
+
+			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
 
 		end
 =end
-  		
+
   		redirect_to action: :transaction_result
 
 	end
@@ -211,10 +209,10 @@ class AccountsController < ApplicationController
 
 			else
 
-				flash[:alert] = "Can't release Escrow Funds. Please contact us. The Transaction ID is #{transaction.braintree_transaction_id}\n#{result.errors.each do |error| puts error.message end }" 
+				flash[:alert] = "Can't release Escrow Funds. Please contact us. The Transaction ID is #{transaction.braintree_transaction_id}\n#{result.errors.each do |error| puts error.message end }"
 
 			end
-		
+
 		end
 
 		redirect_to action: :transaction_result
@@ -269,7 +267,7 @@ class AccountsController < ApplicationController
   				},
   				:tos_accepted => true
 
-	  		)		
+	  		)
 
 		else
 
@@ -296,23 +294,23 @@ class AccountsController < ApplicationController
   				},
   				:tos_accepted => true
 
-	  		)		
+	  		)
 
-		end			
+		end
 
 
   		if result.success?
 
   			current_user.update(merchant_account_id: result.merchant_account.id)
- 				
-  			flash[:notice] = "Saved." 
 
-		else 
-  			
-			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }" 
+  			flash[:notice] = "Saved."
+
+		else
+
+			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
 
 		end
-  		
+
   		redirect_to action: :transaction_result
 
 	end
