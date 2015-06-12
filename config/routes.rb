@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'sign_up/availability',  to: "sign_up#select_availability",        as: "sign_up_select_availability"
   get 'payment/index',         to: "accounts#index",                     as: "payment"
   post 'payment/index',         to: "accounts#create",                    as: "update_payment"
+  get 'payment/release_escrow',to: "accounts#release_escrow",            as: "release_escrow"
   post 'payment/pay',         to: "accounts#pay",                    as: "process_payment"
   get 'payment/transaction_result', to:"accounts#transaction_result",    as: "transaction_result"
   get 'payment/index_mentor',         to: "accounts#index_mentor",        as: "index_mentor"

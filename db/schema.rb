@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150610222838) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "availability_period_time_slots", id: false, force: :cascade do |t|
     t.integer "availability_period_id"
     t.integer "time_slot_id"
@@ -34,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer "availability_period_id"
   end
 
-  add_index "availability_periods_day_availabilities", ["day_availability_id", "availability_period_id"], name: "unique_availability_xref", unique: true, using: :btree
+  add_index "availability_periods_day_availabilities", ["day_availability_id", "availability_period_id"], name: "unique_availability_xref", unique: true
 
   create_table "bookings", force: :cascade do |t|
     t.string   "title"
@@ -54,8 +51,8 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer "booking_id"
   end
 
-  add_index "bookings_tags", ["booking_id"], name: "index_bookings_tags_on_booking_id", using: :btree
-  add_index "bookings_tags", ["tag_id"], name: "index_bookings_tags_on_tag_id", using: :btree
+  add_index "bookings_tags", ["booking_id"], name: "index_bookings_tags_on_booking_id"
+  add_index "bookings_tags", ["tag_id"], name: "index_bookings_tags_on_tag_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -78,9 +75,9 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer "part_id"
   end
 
-  add_index "day_availabilities_time_slots", ["day_availability_id"], name: "index_day_availabilities_time_slots_on_day_availability_id", using: :btree
-  add_index "day_availabilities_time_slots", ["part_id"], name: "index_day_availabilities_time_slots_on_part_id", using: :btree
-  add_index "day_availabilities_time_slots", ["time_slot_id"], name: "index_day_availabilities_time_slots_on_time_slot_id", using: :btree
+  add_index "day_availabilities_time_slots", ["day_availability_id"], name: "index_day_availabilities_time_slots_on_day_availability_id"
+  add_index "day_availabilities_time_slots", ["part_id"], name: "index_day_availabilities_time_slots_on_part_id"
+  add_index "day_availabilities_time_slots", ["time_slot_id"], name: "index_day_availabilities_time_slots_on_time_slot_id"
 
   create_table "photos", force: :cascade do |t|
     t.integer  "photoable_id"
@@ -127,8 +124,8 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer "skill_id"
   end
 
-  add_index "skills_tags", ["skill_id"], name: "index_skills_tags_on_skill_id", using: :btree
-  add_index "skills_tags", ["tag_id"], name: "index_skills_tags_on_tag_id", using: :btree
+  add_index "skills_tags", ["skill_id"], name: "index_skills_tags_on_skill_id"
+  add_index "skills_tags", ["tag_id"], name: "index_skills_tags_on_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.integer  "category_id"
@@ -149,13 +146,14 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer  "user_id"
     t.integer  "pay_to_mentor_id"
     t.string   "title"
-    t.decimal  "amount",           default: 0.0
-    t.string   "state",            default: "future"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",                   default: 0.0
+    t.string   "state",                    default: "future"
+    t.string   "braintree_transaction_id"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
-  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -179,8 +177,8 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.integer  "role",                   default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "validations", force: :cascade do |t|
     t.string   "name"
@@ -200,5 +198,4 @@ ActiveRecord::Schema.define(version: 20150610222838) do
     t.datetime "updated_at",          null: false
   end
 
-  add_foreign_key "transactions", "users"
 end

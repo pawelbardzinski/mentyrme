@@ -1,4 +1,4 @@
-<h2>Information we need to pay you by email</h2>
+<h2>Information we need to pay to your Bank Account</h2>
 
 <%= form_tag save_mentor_path, method: "post" do %>
 
@@ -18,9 +18,14 @@
     <%= text_field_tag :state, nil, size: 25 %></p>
     <p><%= label_tag("Date of Birth") %>
     <%= date_field_tag :dob %></p>
-    <p><%= label_tag("Funding Email") %>
-    <%= text_field_tag :funding_email, @user.email, size: 30 %></p>
+    <p><%= label_tag("Routing Number") %>
+    <%= text_field_tag :routing_number, nil, size: 30 %></p>
+    <p><%= label_tag("Account Number") %>
+    <%= text_field_tag :account_number, nil, size: 30 %></p>
 
 	<p><input type="submit" value="Save"></p>
 
 <% end %>
+
+
+
