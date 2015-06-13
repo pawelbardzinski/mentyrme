@@ -65,7 +65,7 @@
     <label class="control-label">Routing number</label>
     <input type="text" name="routingNumber" ng-maxlength=30 ng-model="user.routing_number" class="form-control"
       required></textarea>
-    <div class="error-container" ng-show="(bankForm.routingNumber.$touched || bankForm.postalCode.$submitted) && bankForm.routingNumber.$invalid" >
+    <div class="error-container" ng-show="(bankForm.routingNumber.$touched || bankForm.routingNumber.$submitted) && bankForm.routingNumber.$invalid" >
       <small class="error" ng-show="bankForm.routingNumber.$error.required">Routing number can't be blank.</small>
       <small class="error" ng-show="bankForm.routingNumber.$error.maxlength">Routing number is too long ( max 30 characters ).</small>
     </div>
@@ -81,7 +81,8 @@
 
 
 
-    <button type="submit" class="btn btn-success" ng-disabled="(bankForm.$dirty || bankForm.$submitted || bankForm.$pristine) && bankForm.$invalid">
+    <button type="submit" class="btn btn-primary" ng-click="saveMentorTypeBank()"
+      ng-disabled="(bankForm.$dirty || bankForm.$submitted || bankForm.$pristine) && bankForm.$invalid">
       Save
     </button>
 

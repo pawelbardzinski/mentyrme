@@ -1,4 +1,4 @@
-<h2>Information we need to pay you by email <small>(all fields are required)</small></h2>
+<h3>Information we need to pay you by email <small>(all fields are required)</small></h3>
 <div class="row" style="margin-left:50px">
 <form name="emailForm">
 
@@ -72,7 +72,8 @@
       <small class="error" ng-show="emailForm.funding_email.$error.maxlength">Funding email is too long ( max 30 characters ).</small>
     </div>
 
-    <button type="submit" class="btn btn-success" ng-disabled="(emailForm.$dirty || emailForm.$submitted || emailForm.$pristine) && emailForm.$invalid">
+    <button type="submit" class="btn btn-primary" ng-click="saveMentorTypeEmail()"
+    ng-disabled="(emailForm.$dirty || emailForm.$submitted || emailForm.$pristine) && emailForm.$invalid">
       Save
     </button>
 

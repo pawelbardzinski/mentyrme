@@ -243,8 +243,7 @@ class AccountsController < ApplicationController
 	end
 
 	def mentor_save
-
-		if params[:account_number] == nil
+		unless params[:account_number]
 
 			result = Braintree::MerchantAccount.create(
 
@@ -300,18 +299,13 @@ class AccountsController < ApplicationController
 
 
   		if result.success?
-
   			current_user.update(merchant_account_id: result.merchant_account.id)
+				render json: { ok: "Saved" }, status: 201
+			else
+				render json: { error: "Something is amiss: #{result.errors.map do |error| error.message end.join(" ")}" }, status: 403
+			end
 
-  			flash[:notice] = "Saved."
-
-		else
-
-			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
-
-		end
-
-  		redirect_to action: :transaction_result
+  		# redirect_to action: :transaction_result
 
 	end
 
