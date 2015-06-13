@@ -1,6 +1,7 @@
 angular.module('app').controller('MentorAccountCtrl', ['$scope', 'Account', 'FlashMessage', function($scope, Account, FlashMessage) {
   var user = gon.user;
   $scope.user = {};
+  $scope.isSuccess = false;
   if (user) {
     user = angular.fromJson(user)
     $scope.user.email = user.email
@@ -10,6 +11,7 @@ angular.module('app').controller('MentorAccountCtrl', ['$scope', 'Account', 'Fla
   }
 
   var resolved = function(response) {
+    $scope.isSuccess = true;
     FlashMessage.clear();
     FlashMessage.show(response.data.success, true);
   };
