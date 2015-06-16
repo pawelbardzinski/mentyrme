@@ -6,14 +6,19 @@
      </div>
      <div class="w-clearfix inner-content less-padding">
        <h2>Your Transactions</h2>
-       <div class="w-dropdown title-dropdown" data-delay="0">
-         <div class="w-dropdown-toggle title-dropdown-toggle">
-           <div class="dropdown-text">Completed</div>
+
+       <div class="w-dropdown title-dropdown" dropdown data-delay="0">
+         <div class="w-dropdown-toggle title-dropdown-toggle"  dropdown-toggle ng-disabled="disabled">
+           <div class="dropdown-text">{{transactionStatus.label}}</div>
            <div class="w-icon-dropdown-toggle dropdown-title-icon"></div>
          </div>
-         <nav class="w-dropdown-list title-dropdown-list"><a class="w-dropdown-link title-dropdown-link" href="#">All Transactions</a><a class="w-dropdown-link title-dropdown-link" href="#">Completed</a><a class="w-dropdown-link title-dropdown-link" href="#">Future</a>
+         <nav class="dropdown-menu">
+           <div ng-repeat="choice in items">
+           <a class="w-dropdown-link dropdown-link" ng-click="setTransactionStatus(choice)">{{choice.label}}</a>
+         </div>
          </nav>
        </div>
+
        <div class="w-row transaction-titles">
          <div class="w-col w-col-2">
            <div>Date</div>
@@ -28,10 +33,10 @@
            <div>Amount</div>
          </div>
          <div class="w-col w-col-2">
-           <div>Payment</div>
+           <div>Todo</div>
          </div>
        </div>
-       <div class="w-row transaction-row" ng-repeat="transaction in transactions | filter: { state: selectedState || ''}">
+       <div class="w-row transaction-row" ng-repeat="transaction in transactions | filter: { state: transactionStatus.value || ''}">
          <div class="w-col w-col-2">
            <div class="form-input">
              <div>{{transaction.created_at | date:"MM/dd/yy" }}</div>
@@ -53,7 +58,8 @@
            </div>
          </div>
          <div class="w-col w-col-2">
-             <a class="button mentor" href="#">Make Payment</a>
+           <a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state == 'future'}}" class="button mentor">Make Payment</a>
+             <a ng-href="/payment/release_escrow?btn_text=Confirm&transaction_id={{transaction.id}}" ng-show="{{transaction.state == 'escrow'}}" class="button mentor">Release Escrow</a>
          </div>
        </div>
      </div>

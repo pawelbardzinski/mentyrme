@@ -52,3 +52,15 @@ div.w-clearfix.inner-content.less-padding div.w-row.transaction-row a.button.men
   padding-top: 0px;
   padding-bottom: 0px;
 }
+
+.dropdown-menu {
+  background-color: whitesmoke;
+  box-shadow: #565a5c 0px 0px 3px -1px;
+  color: #565a5c;
+  text-decoration: none;
+}
+
+
+.dropdown-link:hover {
+  cursor: pointer;
+}
