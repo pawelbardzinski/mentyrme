@@ -1,4 +1,4 @@
-<h3>Information we need to deposit money into your Bank Accont <small>(all fields are required)</small></h3>
+<h3>Information we need to transfer money to your Bank Accont <small>(all fields are required)</small></h3>
 <div class="row" style="margin-left:50px">
 <form name="bankForm">
 
@@ -77,9 +77,6 @@
       <small class="error" ng-show="bankForm.accountNumber.$error.required">Account Number can't be blank.</small>
       <small class="error" ng-show="bankForm.accountNumber.$error.maxlength">Account Number is too long ( max 30 characters ).</small>
     </div>
-
-
-
 
     <button type="submit" class="btn btn-primary" ng-click="saveMentorTypeBank()"
       ng-disabled="(bankForm.$dirty || bankForm.$submitted || bankForm.$pristine) && bankForm.$invalid">
