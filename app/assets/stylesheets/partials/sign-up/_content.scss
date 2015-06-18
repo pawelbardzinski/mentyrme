@@ -1,0 +1,128 @@
+.container-mentor-onboard {
+	&.skills {
+		h1 {
+			margin-bottom: 35px;
+		}
+		.panel-title {
+			font-size: $font-size-h3;
+			line-height: $font-size-h2;
+		}
+	}
+	&.about {
+		padding: 50px;
+
+		form {
+			color: $input-color;
+
+			label {
+				font-weight: $font-weight-light;
+			}
+
+			.label {
+				display: inline;
+				padding: 0;
+				font-size: $font-size-base;
+				font-weight: $font-weight-light;
+				line-height: auto;
+				color: $input-color;
+				text-align: left;
+				white-space: auto;
+				vertical-align: baseline;
+				border-radius: 0;
+			}
+
+			.profile_skills_rate_amount {
+				@extend .col-md-8;
+			}
+
+			.profile_skills_rate_type {
+				@extend .col-md-4;
+			}
+
+			.checkbox-row {
+				padding: 0;
+				border: 0;
+			}
+
+			@media (min-width: $screen-md) {
+				.profile_skills_rate_amount {
+					padding-right: 5px;
+					padding-left: 0;
+				}
+
+				.profile_skills_rate_type {
+					padding-left: 5px;
+				}
+
+				.variable-unit .row {
+					margin: 0;
+				}
+
+				.checkbox-row {
+					padding: 0 12.5px;
+				}
+			}
+
+
+
+			textarea {
+				height: 150px;
+			}
+
+			.description {
+				margin-top: 0px;
+				margin-bottom: 10px;
+				font-size: 12px;
+				font-weight: $font-weight-light;
+				line-height: $line-height-computed;
+			}
+
+			.form-group .form-group {
+				margin-bottom: 0;
+			}
+
+			input,
+			textarea {
+				font-size: $font-size-small;
+				font-weight: $font-weight-light;
+			}
+		}
+	}
+	.panel {
+		border-radius: 0;
+	}
+
+	.panel-heading {
+		background: #fcfcfc;
+		border-radius: 0;
+	}
+
+	.panel-title {
+		font-size: $font-size-h1;
+		position: relative;
+		
+		a {
+			display: block;
+			text-decoration: none;
+
+			&.collapsed .list-arrow {
+				@extend .rotate0;
+			}
+		}
+
+		.list-arrow {
+			position: absolute;
+			right: 0;
+			top: 0;
+			@extend .rotate180;
+		}
+	}
+
+	.custom-timeslots {
+		display: none;
+	}
+
+	form > p {
+		margin-top: 50px;
+	}
+}

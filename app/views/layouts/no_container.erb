@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MentyrMe</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %> <%= yield (:body_class) %>">
+
+    <%= render "/_shared/global_partials/header_nav" %>
+
+    <%= yield %>
+
+    <% if current_user.present? %>
+        <%= render "/_shared/global_partials/footer_block" %>
+    <% end %>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<div>
+	<%	@bookings.each_with_index do |booking, i| %>
+		
+		Row: <%= i %>
+		
+
+		Title: <%= booking.title %><br>
+		Description: <%= booking.title %><br>
+		
+		Location: <%= booking.location %><br>
+		Online_meeting: <%= booking.online_meeting %><br>
+		
+		
+		
+		Booking State: <%= booking.aasm_state %><br>
+		
+		<BR><BR>
+		Actions:
+		
+		<% if current_user.is_mentor?  %><BR>
+		<b>Mentor Actions</b>
+		
+		
+		<% if booking.started?  %>
+		
+		
+	        <%= form_for :booking, :url => booking_mentor_approve_path, method: :post do |f| %>
+				<%= hidden_field_tag 'booking[id]', booking.id %>
+	            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+	                <span class="hire-action">Approve</span>
+	            <% end %>
+	        <% end %>
+			<br>
+			
+	        <%= form_for :booking, :url => booking_mentor_reject_path, method: :post do |f| %>
+				<%= hidden_field_tag 'booking[id]', booking.id %>
+	            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+	                <span class="hire-action">Reject</span>
+	            <% end %>
+	        <% end %>
+		
+			<br>
+			
+	        <%= form_for :booking, :url => booking_mentor_modification_path, method: :post do |f| %>
+				<%= hidden_field_tag 'booking[id]', booking.id %>
+	            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+	                <span class="hire-action">Modify booking</span>
+	            <% end %>
+	        <% end %>
+			
+			<br>
+			
+		
+		<%  end %>
+		
+        
+		
+		
+		 <br>
+		
+		<% else %>
+		<b>Mentee Actions</b><BR>
+		
+		
+		
+		<% if booking.modification?  %>
+		
+		
+	        <%= form_for :booking, :url => booking_mentee_modification_approve_path, method: :post do |f| %>
+				<%= hidden_field_tag 'booking[id]', booking.id %>
+	            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+	                <span class="hire-action">Approve Modification</span>
+	            <% end %>
+	        <% end %>
+			<br>
+	        <%= form_for :booking, :url => booking_mentee_modification_reject_path, method: :post do |f| %>
+				<%= hidden_field_tag 'booking[id]', booking.id %>
+	            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+	                <span class="hire-action">Reject Modification</span>
+	            <% end %>
+	        <% end %>
+		
+			<br>
+			<br>
+			
+		
+		<%  end %>
+		
+		
+		
+		
+		
+		<hr>
+		----------------
+		<br><br>
+	<% end %>
+<% end %>	

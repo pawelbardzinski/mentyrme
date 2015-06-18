@@ -1,0 +1,166 @@
+<% body_class "page-public-profile" %>
+
+<!-- content-nav -->
+<section class="content-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col">
+
+        <%= link_to :back, class: "back-arrow" do %>
+            <%= image_tag("icons/icon-arrow-gray.svg", class: "back-arrow", width: '25px') %>
+        <% end %>
+        <% unless @profile.get_skill.category && @profile.get_skill.category.nil? %>
+          <h3><%= @profile.get_skill.get_category_name %> </h3>
+          <% @profile.get_skill.tags.each do |tag| %>
+            <span class="tag"><%= tag.name %></span>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-sm-6 col">
+        <%= form_for :booking, :url => booking_find_mentor_details_path, method: :post do |f| %>
+
+            <%= hidden_field_tag 'booking[mentor_id]', @mentor.id %>
+
+            <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
+                <span class="hire-action">Hire Me &nbsp;</span>
+                <span class="hire-rate"><%= number_to_currency(@mentor.profile.get_rate_amount) %> / <%= @mentor.profile.get_rate_type %></span>
+            <% end %>
+        <% end %>	
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="profile-header albert">
+  <div class="container welcome">
+    <div class="row">
+      <div class="col-sm-2 col">
+        <%= image_tag("avatar/avatar-2.png", class: "avatar-welcome", width: '125px') %>
+      </div>
+      <div class="col-sm-7 col">
+        <div class="welcome-text">
+          <h3><%= @mentor.full_name %></h3>
+
+          <div class="stars">
+            <%= image_tag("icons/icon-star-gold.svg", class: "icon-star", width: '15') %>
+            <%= image_tag("icons/icon-star-gold.svg", class: "icon-star", width: '15') %>
+            <%= image_tag("icons/icon-star-gold.svg", class: "icon-star", width: '15') %>
+            <%= image_tag("icons/icon-star-gold.svg", class: "icon-star", width: '15') %>
+            <%= image_tag("icons/icon-star-gold.svg", class: "icon-star", width: '15') %>
+            <div class="session-label">(13)</div>
+          </div>
+          <p class="cover-copy"><%= @profile.one_line_description %></p>
+
+          <p class="cover-copy">Chicago, IL</p></div>
+      </div>
+      <div class="col-sm-3 col">
+        <div class="welcome-stats">
+          <div class="row">
+            <div class="col-sm-6 col">
+              <div class="welcome-number">2</div>
+              <div class="welcome-label">Services</div>
+            </div>
+            <div class="col-sm-6 col">
+              <div class="welcome-number">9</div>
+              <div class="welcome-label">Sessions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--main-content-->
+<div class="container main-content">
+
+  <%= flash_messages %>
+
+  <div class="row">
+
+    <div class="col-sm-8 main">
+      <h1>Hi, my name is <%= @mentor.first_name %>.
+      <% unless @profile.get_skill.category.nil? %><br>I offer mentorship for <span class="title-underline"><%= @profile.get_skill.get_category_name %></span>.<% end %></h1>
+
+      <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#about-me" aria-controls="about-me" role="tab" data-toggle="tab">About Me</a></li>
+          <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
+          <li role="presentation"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">Photos</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="container-mentor-onboard container tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="about-me">
+            <%= render "/_shared/profile_partials/profile_about"%>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="reviews">
+            <%= render "/_shared/profile_partials/profile_reviews"%>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="photos">
+            <%= render "/_shared/profile_partials/profile_photos" %>
+          </div>
+
+        </div><!-- /.container-mentor-onboard -->
+
+      </div><!-- /.tabpanel -->
+
+    </div><!-- /.main -->
+
+    <div class="col-sm-4 sidebar">
+
+      <div class="sidebar-module sidebar-module-inset">
+
+        <div class="mentor-card">
+          <div class="card-cover">
+            <img class="card-cover-image" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550c61723be9b4803f8cc7e0_mentor-cover-5.jpg" width="300">
+          </div>
+              <img class="card-profile" src="/assets/avatar/avatar-2-c4679d1d93cf39c7e6530213f66a412ad7b162ec6776d26fefc4b24ee79281fc.png" alt="Avatar 2 c4679d1d93cf39c7e6530213f66a412ad7b162ec6776d26fefc4b24ee79281fc.png" width="100">
+
+          <a class="w-inline-block link-block" href="/public-profile"></a>
+          <div class="card-copy"><a class="w-inline-block link-block" href="/public-profile"></a>
+            <h3>Albert Borland</h3>
+            <div>Maecenas vulputate tristique</div>
+          </div>
+          <div class="card-stats-row row">
+            <div class="col-xs-4">
+              <div class="card-stats">
+                <div class="card-number">5</div>
+                <div>Services</div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="card-stats">
+                <div class="card-number">5</div>
+                <div>Sessions</div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="card-stats">
+                <div class="card-number">9.5</div>
+                <div>Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.sidebar-module -->
+
+      <div class="sidebar-module">
+        <%= render "/_shared/sidebar_modules/member_info" %>
+      </div>
+
+      <div class="sidebar-module">
+        <%= render "/_shared/sidebar_modules/verifications" %>
+      </div>
+
+      <div class="sidebar-module">
+        <%= render "/_shared/sidebar_modules/featured_review" %>
+      </div>
+
+    </div><!-- /.blog-sidebar -->
+
+  </div>
+
+</div>

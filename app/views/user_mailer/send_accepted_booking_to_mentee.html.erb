@@ -1,0 +1,21 @@
+<h1>Hello, <%= @booking.mentee.full_name %></h1>
+<br>
+Your Booking Request from <%= @booking.mentor.full_name %> has been accepted.<br/><br/>
+
+	BOOKING SUMMARY<br/>
+	
+	CATEGORY:  <%= @booking.category.name %>  <BR/>
+	TAGS: 
+    <% @booking.tags.each do |tag| %> 
+   		<B><%= tag.name %></b> , 
+   	<% end %>
+	
+	<BR/>
+	
+	TITLE:<%= @booking.title %><br/>
+	
+	DESCRIPTION: <%= @booking.description %><br/>
+	
+	
+	SESSION DETAILS (LOCATION): <%= @booking.location %>     <br/> 
+	online meeting? <%= @booking.online_meeting %><br/>

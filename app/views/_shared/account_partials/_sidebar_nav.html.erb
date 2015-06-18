@@ -1,0 +1,7 @@
+<ul>
+	<li><%= link_to "Basics", edit_user_registration_path %></li>
+	<li><%= link_to "Password", change_password_path %></li>
+	<li><%= link_to "Payment Info", payment_path %></li>
+	<li><%= link_to "Transactions", transaction_index_path %></li>
+	<li><%= link_to "Delete Account", registration_path('user'), data: { confirm: "Are you sure?" }, method: :delete %></li>
+</ul>

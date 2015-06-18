@@ -1,0 +1,56 @@
+.content-nav {
+  background: $white;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e6e6e6;
+  background-image: none;
+  background-position: 0% 0%;
+  background-size: auto;
+
+  .col {
+    &:last-child {
+      text-align: right;
+    }
+    @media (max-width: $screen-sm) {
+      &:last-child {
+        text-align: center;
+      }
+      text-align: center;
+      h3 {
+        text-align: center;
+      }
+      .button3d {
+        margin: 25px auto 0;
+      }
+    }
+  }
+  .back-arrow {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 0px;
+    float: left;
+  }
+  h3 {
+    display: block;
+    font-family: museo-sans-rounded, sans-serif;
+    color: #565a5c;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+  }
+  .tag {
+    color: #82888a;
+    font-weight: 300;
+  }
+  .button3d, .btn {
+    &:hover {
+      text-decoration: none;
+      color: $white;
+    }
+    @media (max-width: $screen-sm) {
+      margin-top: 25px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<!--mentor-browse-header-->
+<section class="content-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col">
+        <h3><%= @booking.category.name %> </h3>
+        <% @booking.tags.each do |tag| %>
+            <span><%= tag.name %></span>
+        <% end %>
+      </div>
+      <div class="col-sm-6 col">
+        <%= link_to "Edit Search", find_mentor_path, class: "form-control button3d" %>
+      </div>
+    </div>
+  </div>
+</section>

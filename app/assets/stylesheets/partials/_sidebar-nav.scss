@@ -1,0 +1,20 @@
+ul.nav-sidebar {
+  margin-bottom: 25px;
+  > li {
+    @media (max-width: $screen-sm) {
+      text-align: center;
+    }
+    a {
+      font-family: Roboto, sans-serif;
+      color: #82888a;
+      font-size: 16px;
+      font-weight: 300;
+      text-decoration: none;
+      padding-left: 0;
+      &.active {
+        color: #565a5c;
+        font-weight: 700;
+      }
+    }
+  }
+}

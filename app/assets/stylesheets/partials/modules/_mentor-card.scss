@@ -1,0 +1,86 @@
+.mentor-card {
+  padding: 0px;
+  border-style: solid solid none;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  @media (max-width: 767px) {
+    display: block;
+    max-width: 300px;
+    margin-right: auto;
+    margin-bottom: 25px;
+    margin-left: auto;
+  }
+
+  .card-cover {
+    background-color: #333;
+  }
+  .card-cover-image {
+    opacity: 0.5;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .card-profile {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    border: 3px solid white;
+    border-radius: 50%;
+  }
+  .card-copy {
+    padding-right: 25px;
+    padding-left: 25px;
+    color: #82888a;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+  }
+  a {text-decoration: none;}
+  h3 {
+    display: block;
+    margin: 0 !important;
+    font-family: museo-sans-rounded, sans-serif;
+    color: #565a5c;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+
+  }
+  .card-stats-row {
+    margin: 15px 0;
+  }
+  .card-stats {
+    color: #82888a;
+    font-size: 14px;
+    font-weight: 300;
+
+    .card-number {
+      font-family: 'Varela Round', sans-serif;
+      color: #565a5c;
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+
+  }
+
+  .btn {
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+  }
+
+}
+
+.sidebar-module {
+  .mentor-card {
+    padding-bottom: 15px;
+    border-bottom: 3px solid #faab2e;
+  }
+}

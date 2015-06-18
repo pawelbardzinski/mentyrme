@@ -1,0 +1,42 @@
+<!--Find mentor location -->
+<% body_class "page-mentor-notes page-bg" %>
+<div class="col-md-8 col-md-offset-2">
+
+  <nav class="tabs">
+    <ul class="row">
+      <li>
+        <a class="col-md-4" href="<%= url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a>
+      </li>
+      <li>
+        <a class="col-md-4" href="<%= url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp;
+          Time</a></li>
+      <li class="active">
+        <a class="col-md-4" href="<%= url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-mentor-onboard container">
+
+    <h1>Add a Note</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+
+    <%= form_for :booking, :url => booking_find_mentor_review_path, :html => {:class => "simple_form"} do |f| %>
+        <div class="form-group text optional profile_expertise_description">
+          <label for="">Describe What You Want to Learn</label>
+          <textarea class="text optional form-control" placeholder="Write something..." name="booking-notes" id="booking-notes"></textarea>
+        </div>
+        <p class="right">
+          <%= f.submit "Review", class: 'form-control button3d' %>
+        </p>
+
+    <% end %>
+
+  </div>
+
+  <p class="form-footer">
+    Are you lost?  <%= link_to "Start Over", find_mentor_path %>
+  </p>
+
+</div>
