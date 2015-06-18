@@ -3,6 +3,8 @@ class ProfilesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :get_profile
 
+  layout "no_container", only: [:show]
+
 	def edit
 		if @profile.avatar.nil?
 			@profile.avatar = Photo.new
@@ -36,14 +38,32 @@ class ProfilesController < ApplicationController
 
 
 	def show
+		@mentor = @profile.user
+		@photos = @profile.get_skill.photos if @profile.get_skill
+    
+    if session[:is_booking_in_progress] == 1
+      @booking = Booking.new
+    end
+    
+	end
 
+  
+
+	def photos
+		@skill = @profile.get_skill
+		@photos = @skill.photos
+		@photo = Photo.new
 	end
 
 
 	protected
 
 	def get_profile
-		@profile = Profile.find(current_user.profile.id)
+    if params[:id] 
+      @profile = Profile.joins(:user).find(params[:id])
+    else
+      @profile = Profile.joins(:user).find(current_user.profile.id)
+    end
 	end
 
 	def update_params

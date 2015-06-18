@@ -23,6 +23,30 @@ class Profile < ActiveRecord::Base
 		end
 	end
 
+	def get_skill
+		self.skills.first
+	end
+  
+  def get_rate_amount
+    self.get_skill.rate.amount
+  end
+  
+  def get_rate_type
+    rate_type = ""
+    if self.get_skill.rate.type == "HourlyRate"
+      rate_type = "per hour"
+    else
+      rate_type = "per lesson"
+    end
+  end
+  
+  
+
+
+
+  
+  
+
 	def has_an_avatar?
 		!self.avatar.nil?
 	end

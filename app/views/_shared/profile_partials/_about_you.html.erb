@@ -1,3 +1,4 @@
+<!--
 	<%= image_tag @profile.avatar.image_file.blank? ? "user_avatar_placeholder_image.png" : @profile.avatar.image_file.url(:thumb) %>
 	<%= f.simple_fields_for :avatar do |photo| %>
 		<p>
@@ -5,36 +6,81 @@
 			<%= photo.input :image_file, as: :file, label: false %>
 		</p>
 	<% end %>
+-->
 	<%= f.simple_fields_for :skills do |skill| %>
 		<%= skill.simple_fields_for :rate do |rate| %>
-			<p>
-				<%= rate.label :amount, "Your Rate" %>
-				<%= rate.input :amount, label: false %>
-				<%= rate.input :type, as: :select, label: false, collection: rate_types %> 
+	<div class="row form-group variable-unit">
+		<%= rate.label :amount, "Your Rate", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<div class="row">
+			<%= rate.input :amount, label: false %>
+			<%= rate.input :type, as: :select, label: false, collection: rate_types %> 
+			</div>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
 			</p>
+		</div>
+	</div>
 		<% end %>
 	<% end %>
+<!--
 	<p>
 		<%= f.label :one_line_description, "One-Liner" %>
 		<%= f.input :one_line_description, label: false, placeholder: "Describe yourself in 5 words..." %>
 	</p>
-	<p>
-		<%= f.label :expertise_description, "Describe Your Expertise" %>
-		<%= f.input :expertise_description, label: false, placeholder: "Write something..." %>
-	</p>
-	<p>
-		<%= f.label :sales_pitch, "Why Should Someone Learn From You?" %>
-		<%= f.input :sales_pitch, label: false, placeholder: "Write something..." %>
-	</p>
-	<p>
-		<%= f.label :employer, "Work/Employer" %>
-		<%= f.input :employer, label: false, placeholder: "Where do you work?" %>
-	</p>
-	<p>
-		<%= f.label :school, "School" %>
-		<%= f.input :school, label: false, placeholder: "Where did you go to school?" %>
-	</p>
-	<p>
-		<%= f.label :languages, "Languages" %>
-		<%= f.input :languages, label: false, placeholder: "What languages do you speak?" %>
-	</p>
+-->
+	<div class="row form-group">
+		<div class="col-md-3"><span class="label">Locations</span></div>
+		<div class="col-md-9 checkbox-row">
+			<div class="hidden-checkbox-container"><input type="checkbox" name="willingness-to-travel" value="1"></div>
+			<label for="willingness-to-travel">Willingness to travel</label>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<%= f.label :expertise_description, "Describe Your Expertise", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :expertise_description, label: false, placeholder: "Write something..." %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<%= f.label :sales_pitch, "Why Should Someone Learn From You?", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :sales_pitch, label: false, placeholder: "Write something..." %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<%= f.label :employer, "Work/Employer", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :employer, label: false, placeholder: "Where do you work?", class: 'col-md-3' %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<%= f.label :school, "School", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :school, label: false, placeholder: "Where did you go to school?", class: 'col-md-3' %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
+		<%= f.label :languages, "Languages", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :languages, label: false, placeholder: "What languages do you speak?", class: 'col-md-3' %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>

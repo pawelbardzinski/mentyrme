@@ -4,7 +4,13 @@
 @import "partials/form";
 @import "partials/sign-up/sign-up-type-selection";
 @import "partials/sign-up/header";
-@import "partials/sign-up/availability";
+@import "partials/sign-up/content";
 @import "partials/category-overview";
-@import "partials/mentor-card";
+@import "partials/modules/mentor-card";
+@import "partials/modules/sidebar-module";
 @import "partials/pills";
+@import "partials/bookings/content-nav";
+@import "partials/bookings/profile-header";
+@import "partials/sidebar-nav";
+
+

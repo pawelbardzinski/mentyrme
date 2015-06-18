@@ -17,15 +17,40 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def edit_password
+    authenticate_scope!
+  end
+
+  def update_password
+    authenticate_scope!
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+
+    resource_updated = resource.update_with_password(account_update_params)
+    yield resource if block_given?
+    if resource_updated
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+          :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
+      sign_in resource_name, resource, bypass: true
+      redirect_to change_password_path
+    else
+      clean_up_passwords resource
+      respond_with resource
+    end
+  end
+
   # PUT /resource
   # def update
   #   super
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+   #def destroy
+   #  super
+   #end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -47,6 +72,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def configure_account_update_params
   #   devise_parameter_sanitizer.for(:account_update) << :attribute
   # end
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)

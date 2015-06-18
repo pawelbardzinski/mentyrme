@@ -16,7 +16,15 @@ signUp.availability = function() {
 		}
 
 		//set up listener for timeslot links
-		$('.checkbox-row input[type="checkbox"]').hide().after('<div class="checkbox"></div>');
+		$('.checkbox-row .hidden-checkbox-container').each(function() {
+			var $this = $(this);
+			$this.after('<div class="checkbox"></div>');
+			var $fakeBox = $($this.next('.checkbox'));
+			var realBox = $this.html();
+			$this.remove();
+			$fakeBox.next('.period').after('<div class="hidden-checkbox-container">' + realBox + '</div>');
+		});
+
 		$('.checkbox').bind('click', _checkBoxListener);
 		src = $('.checked-src').attr('src');
 		$('.custom-timeslots').prev().find('.checkbox').bind('click', _toggleCustomTimes);
@@ -24,6 +32,12 @@ signUp.availability = function() {
 	}
 	
 	function _setUpCheckBoxesBooking() {
+		//Only interested in running this in booking section page
+		if ($('.checkbox-row-booking').length < 1)
+		{
+			return;
+		}
+
 		//set up listener for timeslot links
 		//$('.checkbox-row-booking input[type="checkbox"]').hide().after('<div class="checkbox"></div>');
 		//.css("visibility", "hidden")
@@ -37,16 +51,42 @@ signUp.availability = function() {
 	//Listener for when .checkbox divs are checked. Add checked icon and alter real checkbox
 	function _checkBoxListener() {
 		var $this = $(this);
-		var $input = $this.prev();
+		var $input = $this.siblings('.hidden-checkbox-container').find('input');
 		if ($input.attr('checked') == 'checked') {
 			$this.html('');
 			$input.removeAttr('checked');
 			$this.removeClass('checked-active');
 		}
 		else {
+			var label = $this.siblings('.period').html();
+			//Check to see if All Day or Custom is being checked. If so uneheck other checkboxes
+			if (label.indexOf('All Day') > -1 || label.indexOf('Custom') > -1) {
+				$this.parent().parent().siblings().each(function() {
+					var $otherCheckboxWrapper = $(this);
+					$otherCheckboxWrapper.find('.checkbox').removeClass('checked-active');
+					$otherCheckboxWrapper.find('input').removeAttr('checked');
+				});
+			}
+			//If not All Day or Custom, make sure All Day and Custom are not checked.
+			else {
+				$this.parent().parent().siblings().each(function() {
+					var $otherRowWrapper = $(this);
+					if ($otherRowWrapper.hasClass('custom-timeslots')) {
+						$otherRowWrapper.hide();
+						return;
+					}
+					var $otherCheckBox = $otherRowWrapper.find('.checkbox');
+					var otherLabel = $otherCheckBox.siblings('.period').html();
+					if (otherLabel.indexOf('All Day') > -1 || otherLabel.indexOf('Custom') > -1) {
+						$otherCheckBox.html('');
+						$otherCheckBox.removeClass('checked-active');
+						$otherCheckBox.siblings('.hidden-checkbox-container').find('input').removeAttr('checked');
+					}
+				});
+			}
+			$this.addClass('checked-active');
 			$this.html('<img src="' + src + '" alt="checked">');
 			$input.attr('checked', 'checked');
-			$this.addClass('checked-active');
 		}
 	}
 	function _checkBoxListener2() {
@@ -78,18 +118,26 @@ signUp.availability = function() {
 
 	//Convert custom time slot labels to links and load up listeners
 	function _setUpCustomTimeSlots() {
-		$('.custom-timeslots input[type="checkbox"]').each(function() {
-			var $this = $(this), $next = $this.next('.custom-time-slot'), text = $next.html(), checked = '';
-			if ($this.attr('checked') == 'checked') {
-				checked = ' checked';
-			}
-			$this.hide();
-			$next.remove();
-			$this.after('<a class="custom-time-slot checkbox-button'+checked+'" href="">' + text + '</a>');
+		var customCtr = 1;
+		$('.custom-timeslots').each(function() {
+			var $customWrapper = $(this);
+			$customWrapper.append('<div class="custom-hidden-checkboxes"/>');
+			$(this).find('input[type="checkbox"]').each(function() {
+				var $this = $(this), $next = $this.parent().next('.custom-time-slot'), text = $next.html(), checked = '';
+				$this.attr('data-id', 'custom-time-' + customCtr);
+				if ($this.attr('checked') == 'checked') {
+					checked = ' checked';
+				}
+				$next.remove();
+				$this.parent().after('<a class="custom-time-slot checkbox-button'+checked+'" data-id="custom-time-'+customCtr+'" href="">' + text + '</a>');
+				$customWrapper.find('.custom-hidden-checkboxes').append(this);
+				customCtr++;
+			}); 
+			$customWrapper.find('.hidden-checkbox-container').remove();
 		});
 		$('.custom-time-slot').bind('click', function(e) {
 			e.preventDefault();
-			var $this = $(this), $input = $(this).prev('input[type="checkbox"]');
+			var $this = $(this), $input = $('input[data-id="'+$this.attr('data-id')+'"]');
 			if ($this.hasClass('checked')) {
 				$this.removeClass('checked');
 				$input.removeAttr('checked');
@@ -99,6 +147,53 @@ signUp.availability = function() {
 				$input.attr('checked', 'checked');
 			}
 		});
+	}
+}
+
+//About You tab logic
+signUp.aboutYou = function() {
+	var src = '';
+
+	this.init = function() {
+		_setUpCheckBoxes();
+	}
+
+	//Set up any checkbox interactivity we need
+	function _setUpCheckBoxes() {
+		//Only interested in running this on about you sign-up page
+		if ($('.container-mentor-onboard.about').length < 1)
+		{
+			return;
+		}
+
+		//set up listener for timeslot links
+		$('.checkbox-row .hidden-checkbox-container').each(function() {
+			var $this = $(this);
+			$this.after('<div class="checkbox"></div>');
+			var $fakeBox = $($this.next('.checkbox'));
+			var realBox = $this.html();
+			$this.remove();
+			$fakeBox.next('label').after('<div class="hidden-checkbox-container">' + realBox + '</div>');
+		});
+
+		$('.checkbox').bind('click', _checkBoxListener);
+		src = $('.checked-src').attr('src');
+	}
+
+	//Listener for when .checkbox divs are checked. Add checked icon and alter real checkbox
+	function _checkBoxListener() {
+		var $this = $(this);
+		var $input = $this.siblings('.hidden-checkbox-container').find('input');
+		if ($input.attr('checked') == 'checked') {
+			$this.html('');
+			$input.removeAttr('checked');
+			$this.removeClass('checked-active');
+		}
+		else {
+			$this.addClass('checked-active');
+			$this.html('<img src="' + src + '" alt="checked">');
+			$input.attr('checked', 'checked');
+		}
 	}
 }
 
@@ -114,43 +209,51 @@ signUp.services = function() {
 		}
 		_setUpCheckBoxes();
 		_setUpRadios();
+		_panelGroupCloseListener();
 	}
+
+  
 
 	//Set up any checkbox interactivity we need
 	function _setUpCheckBoxes() {
 		//set up listener for timeslot links
-		$('.checkbox-row input[type="checkbox"]').hide().after('<div class="checkbox"></div>');
+		$('.checkbox-row label').prepend('<div class="checkbox"></div>');
 		$('.checkbox').bind('click', _checkBoxListener);
 		src = $('.checked-src').attr('src');
 	}
 
 	//Hide radios in accordion titles and set listeners to set/unset them as accordions are expanded/condensed
 	function _setUpRadios() {
-		$('input[type="radio"]').each(function() {
-			var $this = $(this);
-			$this.hide();
-			if ($this.attr('checked') == 'checked') {
-				$this.parent().parent().parent().next().addClass('in');
-			}
-			$this.parent().bind('click', _titleClickListener);
-		})
+		$('.accordion-toggle-link').bind('click', _titleClickListener);
+
 	}
 
 	//Trigger any effects and alter data based on the accordion titles being clicked
 	function _titleClickListener(e) {
 		var $this = $(this);
-
-		//If the panel body has class 'in' at the time of the click, it's being closed. Regardless, since these are radios, remove all checked radios whenever this triggers and if the designated title is getting ready to open (i.e. no 'in'), then set its radio to checked.
-		$('input[type="radio"]').removeAttr('checked');
+		//If the panel body has class 'in' at the time of the click, it's being closed. 
 		if (!$this.parent().parent().next().hasClass('in')) {
-			$this.find('input[type="radio"]').attr('checked', 'checked');
+			$('#skill-category-id').val($this.data('category-id'));
+		} else {
+			$('#skill-category-id').val('');
+
 		}
+		
+	}
+
+	function _panelGroupCloseListener() {
+		$('.category-panel-group').on('hidden.bs.collapse', function () {
+		  $('div.checkbox').html('');
+			$('div.checkbox').removeClass('checked-active');
+			$('.skill-category-tag').removeAttr('checked');
+		});
 	}
 	
 	//Listener for when .checkbox divs are checked. Add checked icon and alter real checkbox
 	function _checkBoxListener() {
 		var $this = $(this);
-		var $input = $this.prev();
+		console.log('check');
+		var $input = $this.next().find('input');
 		if ($input.attr('checked') == 'checked') {
 			$this.html('');
 			$input.removeAttr('checked');
@@ -165,7 +268,8 @@ signUp.services = function() {
 }
 
 $(document).ready(function() {
-	var availability = new signUp.availability(), services = new signUp.services();
+	var availability = new signUp.availability(), services = new signUp.services(), aboutYou = new signUp.aboutYou();
 	availability.init();
+	aboutYou.init();
 	services.init();
 })

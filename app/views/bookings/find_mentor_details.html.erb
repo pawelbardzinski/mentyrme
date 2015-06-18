@@ -6,7 +6,8 @@
   <ul class="row">
     <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
     <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
-    <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+    <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
+	
   </ul>
   </nav>
 
@@ -15,8 +16,10 @@
     <h1>Teach Me How to Lay Tile</h1>
 
     <ul class="pills">
-      <li>Home Improvement</li>
-      <li>Tiling</li>
+      <li><%= @category_name %></li>
+      <% @tags.each do |tag| %>
+           <li><%= tag.name %></li>
+      <% end %>
     </ul>
     <div class="session-details">
       <strong>Description:<br></strong>
@@ -24,7 +27,7 @@
       <strong>Description:<br></strong>
       <p>$75 per session</p>
     </div>
-    <%= form_for :booking, :url => booking_find_mentor_locations_path, method: :put do |f| %>
+    <%= form_for :booking, :url => booking_find_mentor_locations_path do |f| %>
 
         <div style="display: none">
           <%= f.label :title, "Create a Title for your Session" %><br />
@@ -37,7 +40,7 @@
         </div>
 
         <p class="right">
-          <%= hidden_field_tag 'current_booking_id', @booking.id %>
+          
           <%= f.submit "Continue", class: 'form-control button3d'  %>
         </p>
 
@@ -45,7 +48,7 @@
 
   </div>
   <p class="form-footer">
-    Are you lost?  <a href="/users/sign_in">Start Over</a>
+    Are you lost?  <%= link_to "Start Over", find_mentor_path %>
   </p>
 
 </div>
@@ -53,7 +56,7 @@
 
 
 <!--
-<%= form_for :booking, :url => booking_find_mentor_locations_path, method: :put do |f| %>
+<%= form_for :booking, :url => booking_find_mentor_locations_path do |f| %>
 
         <div class="field">
           <%= f.label :title, "Create a Title for your Session" %><br />
@@ -65,8 +68,7 @@
           <%= f.text_area :description, autocomplete: "off" %>
         </div>
 
-        <%= hidden_field_tag 'current_booking_id', @booking.id %>
-
+      
     <%= f.submit "Continue" %>
 
 <% end %>

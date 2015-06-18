@@ -1,24 +1,54 @@
-<p>
-<ul>
-	<li><%= link_to "Basic Info", edit_profile_path  %></li>
-	<li><%= link_to "Services", edit_profile_skill_path(@skill_id)  %></li>
-	<li><%= link_to "Availability", edit_profile_availability_path %></li>
-	<li><%= link_to "Photos", profile_skill_photos_path(@skill_id)  %></li>
-	<li><%= link_to "Verifications", profile_verifications_path %></li></li>
-	<li><a href="">Reviews</a></li>
-</ul>
-<%= link_to "View Profile", profile_path %>
-</p>
+<% body_class "page-edit-profile" %>
 
-<h1>Edit Your Info</h1>
+<!--main-content-->
+<div class="container main-content">
 
-<p>
-	Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
-</p>
+  <%= flash_messages %>
 
-<%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
-	<%= render "/_shared/profile_partials/about_you", f: f %>
-	<p>
-		<%= f.submit "Save Changes" %>
-	</p>
-<% end %>
+  <div class="row">
+
+    <div class="col-sm-3 sidebar">
+
+      <div class="sidebar-module">
+
+        <ul class="nav nav-sidebar">
+          <li><%= link_to "Basic Info",  edit_profile_path, class: "active"  %></li>
+          <% if @skill_id %>
+              <li><%= link_to "Services", edit_profile_skill_path(@skill_id)  %></li>
+          <% end %>
+          <li><%= link_to "Availability", edit_profile_availability_path %></li>
+          <li><%= link_to "Photos",  photos_profile_path  %></li>
+          <li><%= link_to "Verifications", profile_verifications_path %></li></li>
+          <li><a href="">Reviews</a></li>
+        </ul><!-- /.nav-sidebar -->
+
+        <%= link_to "View Profile", public_profile_path(@profile), class: "btn btn-empty"   %>
+      </div><!-- /.sidebar-module -->
+
+    </div><!-- /.sidebar -->
+
+    <div class="col-sm-9 main">
+
+        <!-- container-mentor-onboard  -->
+        <div class="container-mentor-onboard container">
+
+            <h1>Edit Your Info</h1>
+
+            <p>
+            Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
+            </p>
+
+            <%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
+            <%= render "/_shared/profile_partials/about_you", f: f %>
+
+        </div><!-- /.container-mentor-onboard -->
+        <p>
+            <%= f.submit "Save Changes", class: "button3d" %>
+        </p>
+          <% end %>
+     </div><!-- /.col-sm-9 main" -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container main-content -->
+

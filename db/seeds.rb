@@ -58,3 +58,4 @@ Validation.create(name: 'Email Address', description: 'Lorem ipsome dolor sit am
 Validation.create(name: 'Phone Number', description: 'Lorem ipsome dolor sit amet', value_label: "Phone")
 Validation.create(name: 'Facebook', description: 'Lorem ipsome dolor sit amet', value_label: "URL")
 Validation.create(name: 'LinkedIn', description: 'Lorem ipsome dolor sit amet', value_label: "URL")
+

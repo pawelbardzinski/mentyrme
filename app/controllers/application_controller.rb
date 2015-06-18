@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :zip_code, :email, :password) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :zip_code, :email, :password, :password_confirmation, :wants_notifications) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :first_name, :last_name, :zip_code, :wants_notifications, :password, :password_confirmation, :current_password) }
   end
 
   def set_skill_id

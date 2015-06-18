@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 		@photo = Photo.new
 	end
 
-	def create
+	def create_skill_photo
 		@photo = Photo.new(add_params)
 
 		skill = Skill.find(params[:skill_id])
@@ -16,13 +16,20 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if skill.save
-        format.html { redirect_to profile_skill_photos_path(params[:skill_id]) }
+        format.html { redirect_to photos_profile_path }
         format.json { render :show, status: :created, location: @photo }
       else
-        format.html { redirect_to profile_skill_photos_path(params[:skill_id]) }
+        format.html { redirect_to photos_profile_path }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
+	end
+
+
+	def destroy
+		photo = Photo.find(params[:id])
+		photo.destroy
+		redirect_to :back
 	end
 
 

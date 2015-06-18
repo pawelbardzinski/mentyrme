@@ -6,7 +6,6 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :title, default: nil
       t.decimal :amount, default: 0.0
       t.string :state, default: "not paid"
-      t.string :braintree_transaction_id, default: nil
       t.timestamps null: false
     end
   end

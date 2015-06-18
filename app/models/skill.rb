@@ -7,4 +7,8 @@ class Skill < ActiveRecord::Base
 	has_one :rate
 	
 	accepts_nested_attributes_for :category, :tags, :rate
+
+		def get_category_name
+			self.category.nil? ? "N/A" : self.category.name
+		end
 end

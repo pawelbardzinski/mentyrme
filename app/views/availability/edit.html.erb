@@ -1,10 +1,47 @@
-<h1>Availability</h1>
+<% body_class "page-edit-profile" %>
 
-<%= form_tag update_availability_profile_path, method: :put do |f| %>
-	
-	<%= render "/_shared/profile_partials/availability", f: f %>
-	
-	<p>
-		<%= submit_tag "Continue" %>
-	</p>
-<% end %>
+<!--main-content-->
+<div class="container main-content">
+
+  <%= flash_messages %>
+
+  <div class="row">
+
+    <div class="col-sm-3 sidebar">
+
+      <div class="sidebar-module">
+
+        <ul class="nav nav-sidebar">
+          <li><%= link_to "Basic Info",  edit_profile_path  %></li>
+          <% if @skill_id %>
+              <li><%= link_to "Services", edit_profile_skill_path(@skill_id) %></li>
+          <% end %>
+          <li><%= link_to "Availability", edit_profile_availability_path, class: "active" %></li>
+          <li><%= link_to "Photos",  photos_profile_path  %></li>
+          <li><%= link_to "Verifications", profile_verifications_path %></li></li>
+          <li><a href="">Reviews</a></li>
+        </ul><!-- /.nav-sidebar -->
+
+      </div><!-- /.sidebar-module -->
+
+    </div><!-- /.sidebar -->
+
+    <div class="col-sm-9 main">
+
+      <!-- container-mentor-onboard  -->
+      <div class="container-mentor-onboard container">
+        <h1>Availability</h1>
+
+        <%= form_tag update_availability_profile_path, method: :put do |f| %>
+
+            <%= render "/_shared/profile_partials/availability", f: f %>
+            </div><!-- /.container-mentor-onboard -->
+            <p>
+              <%= submit_tag"Save Changes", class: "button3d" %>
+            </p>
+        <% end %>
+        </div><!-- /.col-sm-9 main" -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container main-content -->

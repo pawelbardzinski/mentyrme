@@ -4,9 +4,10 @@
 
   <nav class="tabs">
     <ul class="row">
-      <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
-      <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
-      <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+      <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
+      <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+	  <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
+	  <li class="active"><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
     </ul>
   </nav>
   <div class="container-mentor-onboard container">
@@ -14,18 +15,18 @@
     <h1>Teach Me How to Lay Tile</h1>
 
     <ul class="pills">
-      <li><%= @category.name %></li>
-      <% @booking.tags.each do |tag| %>
-          <li><%= tag.name %></li>
+      <li><%= @category_name %></li>
+      <% @tags.each do |tag| %>
+           <li><%= tag.name %></li>
       <% end %>
     </ul>
     <div class="session-details">
         <strong>Description:<br></strong>
-        <p><%= @booking.description %> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+        <p>BOOKINGDeSC Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
 
         <strong>Session Details:<br></strong>
         <p>
-          <%= @booking.location %> 311 Main Street. Beverly Hills, CA 90210 <br>
+          BOOKING LLCAITNS 311 Main Street. Beverly Hills, CA 90210 <br>
           Saturday, May 23rd from 10:00am - 11:00am <br>
           $75 per session
         </p>
@@ -36,9 +37,8 @@
       <li>Cancel Session</li>
     </ul>
 
-    <%= form_for :booking, :url => booking_find_mentor_finalize_path, method: :put do |f| %>
-
-        <%= hidden_field_tag 'booking[is_finalized]', 1 %>
+    <%= form_for :booking, :url => booking_find_mentor_finalize_path do |f| %>
+	
         <%= f.submit "Hire Mentor", class: 'form-control button3d btn-block' %>
 
     <% end %>
@@ -46,16 +46,14 @@
   </div>
 
   <p class="form-footer">
-    Are you lost?  <a href="/users/sign_in">Start Over</a>
+    Are you lost?  <%= link_to "Start Over", find_mentor_path %>
   </p>
 
 </div>
 
 
 
-<!--   TITLE:<%= @booking.title %><br/>
-    online meeting? <%= @booking.online_meeting %><br/>
-    <%= @booking.mentor_id %> -->
+
 
 
  

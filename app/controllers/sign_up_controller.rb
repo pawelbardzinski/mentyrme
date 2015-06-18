@@ -27,6 +27,12 @@ class SignUpController < ApplicationController
 		@skill.category = Category.new
 		@categories = Category.includes(:tags).order(:name)
 		@current_tag_ids = []
+
+		@panel_ids = []
+	  @categories.each do |category|
+			@panel_ids.push('#accordion' + category.id.to_s)
+		end
+		@panel_ids = @panel_ids.join(', ')
 	end
 
 	

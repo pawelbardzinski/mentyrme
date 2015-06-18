@@ -1,8 +1,4 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-
-//= require ./webflow
-//= require ./kenobi
-
 @import "bootstrap-sprockets";
 @import 'variables';
 @import "bootstrap";
@@ -10,57 +6,3 @@
 @import 'global';
 @import "partials";
 @import "bookings";
-
-
-div.tab-content form div.row input.form-control{
-  margin-top: 10px;
-  border: 2px solid;
-}
-
-
-.error-container{
-  color: #FA787E;
-}
-
-form.ng-invalid.ng-invalid-required.ng-submitted textarea{
-  border: 1px solid #FA787E;
-}
-
-input.ng-touched.ng-invalid {
-  border: 1px solid #FA787E;
-}
-input.ng-valid.ng-touched {
-  border: 1px solid #4cae4c;
-}
-div.tab-content div.tab-pane form button{
-  margin-top: 10px;
-}
-
-div.w-row.transaction-row div.form-input{
-  font-size: 12px;
-}
-
-div.transaction-title{
-    display:inline-block;
-    width:120px;
-    white-space: nowrap;
-    overflow:hidden !important;
-    text-overflow: ellipsis;
-}
-
-div.w-clearfix.inner-content.less-padding div.w-row.transaction-row a.button.mentor{
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.dropdown-menu {
-  background-color: whitesmoke;
-  box-shadow: #565a5c 0px 0px 3px -1px;
-  color: #565a5c;
-  text-decoration: none;
-}
-
-
-.dropdown-link:hover {
-  cursor: pointer;
-}

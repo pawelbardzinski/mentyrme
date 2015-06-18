@@ -1,18 +1,21 @@
 <% body_class "page-mentor-browse" %>
 
 <!--mentor-browse-header-->
-<section class="mentor-browse-header">
+<section class="content-nav">
   <div class="container">
     <div class="row">
-        <div class="col-sm-6 col">
-          <h3><%= @booking.category.name %> </h3>
-          <% @booking.tags.each do |tag| %>
-              <span><%= tag.name %></span>
+      <div class="col-sm-6 col">
+		  
+          <h3><%= @category_name %> </h3>
+          <% @tags.each do |tag| %>
+              <span class="tag"><%= tag.name %></span>
           <% end %>
-        </div>
-        <div class="col-sm-6 col">
-          <%= link_to "Edit Search", find_mentor_path, class: "form-control button3d" %>
-        </div>
+		  
+        	
+      </div>
+      <div class="col-sm-6 col">
+        <%= link_to "Edit Search", find_mentor_path, class: "form-control button3d" %>
+      </div>
     </div>
   </div>
 </section>
@@ -35,15 +38,15 @@
             <div class="text-center col-sm-4">
               <div class="mentor-card"><div class="card-cover">
                 <img class="card-cover-image" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550c61723be9b4803f8cc7e0_mentor-cover-5.jpg" width="300"></div>
-                <%= link_to booking_find_mentors_public_profile_path(:id => mentor.id)  do %>
+                <%= link_to public_profile_path(mentor.profile)  do %>
                   <img class="card-profile" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550b51285b7ee5ba660e4e75_avatar-1.png" width="100">
                 <% end %>
                 <a class="w-inline-block link-block" href="/public-profile"></a>
                 <div class="card-copy"><a class="w-inline-block link-block" href="/public-profile"></a>
-                  <%= link_to booking_find_mentors_public_profile_path(:id => mentor.id)  do %>
-                    <h3>Tim Taylor</h3>
+                  <%= link_to public_profile_path(mentor.profile)  do %>
+                    <h3><%= mentor.full_name %></h3>
                   <% end %>
-                  <div>Maecenas vulputate tristique</div>
+                  <div><%= mentor.profile.one_line_description %></div>
                 </div>
                 <div class="card-stats-row row">
                     <div class="col-xs-4">
@@ -65,15 +68,14 @@
                       </div>
                     </div>
                 </div>
-                <%= form_for :booking, :url => booking_find_mentor_details_path, method: :put do |f| %>
+                <%= form_for :booking, :url => booking_find_mentor_details_path, method: :post do |f| %>
 
                     <%= hidden_field_tag 'booking[mentor_id]', mentor.id %>
 
                     <%= button_tag(type: 'submit', class: "btn btn-primary blue") do %>
                         <span class="hire-action">Hire Me &nbsp;</span>
-                        <span class="hire-rate">$99 / session</span>
+                        <span class="hire-rate"><%= number_to_currency(mentor.profile.get_rate_amount) %> / <%= mentor.profile.get_rate_type %></span>
                     <% end %>
-
                 <% end %>
                 </div>
             </div>

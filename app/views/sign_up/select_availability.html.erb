@@ -1,19 +1,21 @@
 <div class="col-md-8 col-md-offset-2">
   <nav class="tabs">
   	<ul class="row">
-  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_skill_category' %>">Services</a></li>
-  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'about_you' %>">About You</a></li>
-  		<li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_availability' %>">Availability</a></li>
+  		<li><%= link_to "Services", sign_up_select_skill_path, class: "col-md-4" %></li>
+  		<li><%= link_to "About You", sign_up_about_you_path, class: "col-md-4" %></li>
+  		<li class="active"><%= link_to "Availability", sign_up_select_availability_path, class: "col-md-4" %></li>
     </ul>
   </nav>
   <div class="container-mentor-onboard availability container">
     <%= form_tag profile_availability_path, method: :put do |f| %>
-    <%= render "/_shared/profile_partials/availability", f: f %>
-    <p class="right">
-      <%= hidden_field_tag 'during_registration', true %>
-      <%= submit_tag "Continue", class: 'form-control button3d' %>
-      <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
-    </p>
+      
+      <%= render "/_shared/profile_partials/availability", f: f %>
+      <p class="pull-right">
+        <%= hidden_field_tag 'during_registration', true %>
+        <%= submit_tag "Continue", class: 'form-control button3d' %>
+        <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+      </p>
+
+    <% end %>
   </div>
 </div>
-<% end %>

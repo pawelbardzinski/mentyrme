@@ -1,13 +1,21 @@
-<h1>Edit Your Info</h1>
-
-<p>
-	Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
-</p>
-
-<%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
+<div class="col-md-8 col-md-offset-2">
+  <nav class="tabs">
+  	<ul class="row">
+  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_skill_category' %>">Services</a></li>
+  		<li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'about_you' %>">About You</a></li>
+  		<li><a class="col-md-4" href="<%=  url_for :controller => 'sign_up', :action => 'select_availability' %>">Availability</a></li>
+    </ul>
+  </nav>
+  <div class="container-mentor-onboard about container">
+	<h1>Edit Your Info</h1>
+	<p>Share your skills by mentoring, coaching &amp; teaching others who want to learn. It's your expertise, so you set your rate and make some cash.</p>
+	<%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
 	<%= render "/_shared/profile_partials/about_you", f: f %>
-	<p>
-		<%= hidden_field_tag 'during_registration', true %>
-		<%= f.submit "Continue" %>
-	</p>
+    <p class="right">
+      <%= hidden_field_tag 'during_registration', true %>
+      <%= submit_tag "Continue", class: 'form-control button3d' %>
+      <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+    </p>
+  </div>
+</div>
 <% end %>

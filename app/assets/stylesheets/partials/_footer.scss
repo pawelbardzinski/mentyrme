@@ -29,6 +29,11 @@
 		.input {
 			display: block;
 		}
+      .button3d {
+        @media (max-width: $screen-sm) {
+          width: 100%;
+        }
+      }
 	}
 
 	.copyright-section {

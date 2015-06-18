@@ -6,7 +6,7 @@
     <ul class="row">
       <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
       <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
-      <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
+      <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
     </ul>
   </nav>
 
@@ -16,7 +16,7 @@
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
 
-    <%= form_for :booking, :url => booking_find_mentor_review_path, :html => { :class => "simple_form"}, method: :put do |f| %>
+    <%= form_for :booking, :url => booking_find_mentor_notes_path, :html => { :class => "simple_form"} do |f| %>
 
         <div class="form-group string optional user_first_name">
           <%= f.label :location, "Location" %>
@@ -69,7 +69,7 @@
 
 
         <p class="right">
-          <%= hidden_field_tag 'current_booking_id', @booking.id %>
+          
           <%= f.submit "Continue", class: 'form-control button3d' %>
           <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
         </p>
@@ -79,7 +79,7 @@
   </div>
 
   <p class="form-footer">
-    Are you lost?  <a href="/users/sign_in">Start Over</a>
+    Are you lost?  <%= link_to "Start Over", find_mentor_path %>
   </p>
 
 </div>

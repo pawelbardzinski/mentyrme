@@ -1,14 +1,14 @@
-<div style="width:100%;">
-	<div style="width:33%;float:left;">
+<% @photos.in_groups_of(3, false) do |row_photos| %>
 
-	</div>
-	<div style="width:33%;float:left;">
+  <div class="row">
+    <div class="row profile-gallery">
+      <% for photo in row_photos %>
+        <div class="col-sm-4 col">
+          <%= image_tag photo.image_file.blank? ? "user_avatar_placeholder_image.png" : photo.image_file.url(:thumb) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-	</div>
-	<div style="width:33%;float:left;">
-
-	</div>
-	<div style="width:33%;float:left;">
-
-	</div>
-</div>
+<% end %>
+      

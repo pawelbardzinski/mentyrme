@@ -1,10 +1,50 @@
-<h1>What Do You Want To Teach?</h1>
-<p>
-	Choose a category
-</p>
+<% body_class "page-edit-profile" %>
 
-<%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
-		
-		<%= render "/_shared/profile_partials/skill_category", f: f %>
-		<%= f.submit "Continue" %>
-<% end %>
+<!--main-content-->
+<div class="container main-content">
+
+  <%= flash_messages %>
+
+  <div class="row">
+
+    <div class="col-sm-3 sidebar">
+
+      <div class="sidebar-module">
+
+        <ul class="nav nav-sidebar">
+          <li><%= link_to "Basic Info",  edit_profile_path  %></li>
+          <% if @skill_id %>
+              <li><%= link_to "Services", edit_profile_skill_path(@skill_id), class: "active"  %></li>
+          <% end %>
+          <li><%= link_to "Availability", edit_profile_availability_path %></li>
+          <li><%= link_to "Photos",  photos_profile_path  %></li>
+          <li><%= link_to "Verifications", profile_verifications_path %></li></li>
+          <li><a href="">Reviews</a></li>
+        </ul><!-- /.nav-sidebar -->
+
+      </div><!-- /.sidebar-module -->
+
+    </div><!-- /.sidebar -->
+
+    <div class="col-sm-9 main">
+
+      <!-- container-mentor-onboard  -->
+      <div class="container-mentor-onboard container">
+        <h2>What would you like to teach?</h2>
+        <p>
+          Choose a category
+        </p>
+
+        <%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
+
+            <%= render "/_shared/profile_partials/skill_category", f: f %>
+            </div><!-- /.container-mentor-onboard -->
+            <p>
+              <%= f.submit "Save Changes", class: "button3d" %>
+            </p>
+        <% end %>
+        </div><!-- /.col-sm-9 main" -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container main-content -->
