@@ -25,15 +25,14 @@ namespace :app do
 	user5 = User.create(email: "none2@none.com", first_name: "Palpatine", last_name: "Cosinga", role: 1, zip_code: "91789", merchant_account_id: "palpatine_palpatine_instant_8x9kyk88", password: 'verylongpassword1!')
 	user6 = User.create(email: "none@none.com", first_name: "Chewbacca", last_name: "Wookiee", role: 1, zip_code: "91789", merchant_account_id: "chewbacca_chewbacca_instant_h2g64qhy", password: 'verylongpassword1!')
 
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user5.id, title: "Teach me how to run an Empire", amount: 999.00, state: 'not paid')
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user6.id, title: "I want to Growl really loud", amount: 15.00, state: 'paid')
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user4.id, title: "I want to Destroy a Death Star", amount: 125.00, state: 'not paid')
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user3.id, title: "Teach me how to Exceed Speed of Light", amount: 1250.00, state: 'not paid')
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user3.id, title: "Please teach me how to smuggle contraband", amount: 100.00, state: 'paid')
-	Transaction.create(user_id: user1.id, pay_to_mentor_id: user2.id, title: "I want to have Royal Manners", amount: 250.00, state: 'not paid')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user5.id, title: "Teach me how to run an Empire", amount: 999.00, state: 'escrow')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user6.id, title: "I want to Growl really loud", amount: 15.00, state: 'future')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user4.id, title: "I want to Destroy a Death Star", amount: 125.00, state: 'completed')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user3.id, title: "Teach me how to Exceed Speed of Light", amount: 1250.00, state: 'completed')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user3.id, title: "Please teach me how to smuggle contraband", amount: 100.00, state: 'future')
+	Transaction.create(user_id: user1.id, pay_to_mentor_id: user2.id, title: "I want to have Royal Manners", amount: 250.00, state: 'escrow')
 
   # Other test data should be added here...
 
   end
 end
-
