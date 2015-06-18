@@ -14,10 +14,14 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require angular
+//= require angular-sanitize
 //= require angularjs/rails/resource
 //= require angular-resource
 //= require_tree ./angular
+//= require bootstrap
+//= require underscore
 //= require angular-ui-bootstrap
+//= require angular-ui-bootstrap-tpls
 //= require underscore
 //= require braintree
 //= require_tree .
