@@ -24,12 +24,15 @@
               <td>{{transaction.title}}</td>
               <td>{{transaction.amount | currency}}</td>
               <td>{{transaction.state}}</td>
-              <td><a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state != 'completed'}}" class="btn btn-default">Make Payment</a></td>
+              <td>
+                <a ng-href="/payment/index?btn_text=Confirm&transaction_id={{transaction.id}}&amount={{transaction.amount}}&mentor_first_name={{firstNames[$index]}}&mentor_last_name={{lastNames[$index]}}" ng-show="{{transaction.state == 'future'}}" class="btn btn-default">Make Payment</a>
+                <a ng-href="/payment/release_escrow?btn_text=Confirm&transaction_id={{transaction.id}}" ng-show="{{transaction.state == 'escrow'}}" class="btn btn-default">Release Escrow</a>
+              </td>
             </tr>
           </table>
         </div>
         <h3 ng-hide="{{transactions.length > 0}}">You have no transactions</h3>
-        </div>
       </div>
+    </div>
   </div>
 </div>
