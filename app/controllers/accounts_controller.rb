@@ -148,6 +148,8 @@ class AccountsController < ApplicationController
 
 		current_transaction_id = result.transaction.id
 
+		Braintree::TestTransaction.settle(current_transaction_id)		
+
 		if result.success?
 
 			# escrow_result = Braintree::Transaction.hold_in_escrow(current_transaction_id)

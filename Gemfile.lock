@@ -118,6 +118,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.1)
+    mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -134,7 +135,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (0.18.2)
     pundit (1.0.1)
       activesupport (>= 3.0.0)
     rack (1.6.2)
@@ -231,8 +231,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
+  mysql2
   paperclip (~> 4.2)
-  pg
   pundit
   rails (= 4.2.1)
   rvm-capistrano
