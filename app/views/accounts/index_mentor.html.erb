@@ -1,7 +1,7 @@
 <div ng-controller="MentorAccountCtrl">
   <div ng-controller="FlashMessageController" ng-init="hideMessage()">
     <div ng-hide="isSuccess">
-    <h1>Choose pay type</h1>
+    <h1>How would you like to get paid?</h1>
     <tabset justified="true">
       <tab heading="Email">
         <div class="alert" ng-class="alert" ng-show="flash">
@@ -15,7 +15,7 @@
         </div>
         <%= render "email" %>
       </tab>
-      <tab heading="Bank">
+      <tab heading="Bank Account">
         <div class="alert" ng-class="alert" ng-show="flash">
           <button type="button" class="close" ng-click="hideMessage()">
             <span aria-hidden="true">&times;</span>
@@ -30,6 +30,6 @@
     </tabset>
     </div>
     <div ng-show="isSuccess">
-      <div> Pay type choosed successfully</div>
+      <div> Payment type selected successfully</div>
   </div>
 </div>

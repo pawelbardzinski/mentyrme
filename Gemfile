@@ -29,8 +29,7 @@ gem 'gon', '~> 5.2.3'
 
 # Gemfile
 gem 'aws-sdk', '~> 1.6'
-gem 'pg'
-# gem 'mysql2'
+gem 'mysql2'
 gem 'devise'
 gem 'paperclip', '~> 4.2'
 gem 'mini_magick'
@@ -50,6 +49,8 @@ gem 'braintree'
 
 group :development, :test do
   gem 'jazz_hands', github: 'jkrmr/jazz_hands'
+
+  gem 'sqlite3'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 

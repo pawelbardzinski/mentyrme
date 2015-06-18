@@ -146,6 +146,8 @@ class AccountsController < ApplicationController
 
 		current_transaction_id = result.transaction.id
 
+		Braintree::TestTransaction.settle(current_transaction_id)
+
 		if result.success?
 
 			# escrow_result = Braintree::Transaction.hold_in_escrow(current_transaction_id)
@@ -256,7 +258,7 @@ class AccountsController < ApplicationController
 	      				street_address: params[:street_address],
     	  				postal_code: params[:zip_code],
       					locality: params[:locality],
-      					region: params[:state]
+      					region: params[:region],
 	    			},
     			date_of_birth: params[:dob]
   				},
@@ -281,7 +283,7 @@ class AccountsController < ApplicationController
 	      				street_address: params[:street_address],
     	  				postal_code: params[:zip_code],
       					locality: params[:locality],
-      					region: params[:state]
+      					region: params[:region],
 	    			},
     			date_of_birth: params[:dob]
   				},

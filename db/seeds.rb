@@ -52,19 +52,6 @@ TimeSlot.create(start_time: '8:00 PM', end_time: '9:00 PM')
 TimeSlot.create(start_time: '9:00 PM', end_time: '10:00 PM')
 TimeSlot.create(start_time: '10:00 PM', end_time: '11:00 PM')
 
-User.create(email: "none@gmail.com", first_name: "Johnny", last_name: "Mnemonic", zip_code: "91789", password: 'verylongpassword1!')
-User.create(email: "none5@none.com", first_name: "Princess", last_name: "Leya", zip_code: "91789", merchant_account_id: "princess_princess_instant_668nxqgs", password: 'verylongpassword1!')
-User.create(email: "none4@none.com", first_name: "Han", last_name: "Solo", zip_code: "91789", merchant_account_id: "han_han_instant_qwpznfhy", password: 'verylongpassword1!')
-User.create(email: "none3@none.com", first_name: "Luke", last_name: "Skywalker", zip_code: "91789", merchant_account_id: "luke_luke_instant_rggxzxrg", password: 'verylongpassword1!')
-User.create(email: "none2@none.com", first_name: "Palpatine", last_name: "Cosinga", zip_code: "91789", merchant_account_id: "palpatine_palpatine_instant_8x9kyk88", password: 'verylongpassword1!')
-User.create(email: "none@none.com", first_name: "Chewbacca", last_name: "Wookiee", zip_code: "91789", merchant_account_id: "chewbacca_chewbacca_instant_h2g64qhy", password: 'verylongpassword1!')
-
-Transaction.create(user_id: 1, pay_to_mentor_id: 6, title: "I want to Growl really loud", amount: 15.00, state: 'completed')
-Transaction.create(user_id: 1, pay_to_mentor_id: 4, title: "I want to Destroy a Death Star", amount: 125.00, state: 'future')
-Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Teach me how to Exceed Speed of Light", amount: 1250.00, state: 'future')
-Transaction.create(user_id: 1, pay_to_mentor_id: 3, title: "Please teach me how to smuggle contraband", amount: 100.00, state: 'completed')
-Transaction.create(user_id: 1, pay_to_mentor_id: 2, title: "I want to have Royal Manners", amount: 250.00, state: 'future')
-
 
 Validation.create(name: 'Verify Your Id', description: 'Lorem ipsome dolor sit amet')
 Validation.create(name: 'Email Address', description: 'Lorem ipsome dolor sit amet', value_label: "Email")
