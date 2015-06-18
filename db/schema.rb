@@ -149,10 +149,11 @@ ActiveRecord::Schema.define(version: 20150615122555) do
     t.integer  "user_id"
     t.integer  "pay_to_mentor_id"
     t.string   "title"
-    t.decimal  "amount",           default: 0.0
-    t.string   "state",            default: "future"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",                   default: 0.0
+    t.string   "state",                    default: "future"
+    t.string   "braintree_transaction_id"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree

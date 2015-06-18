@@ -7,10 +7,8 @@
       <div ng-controller="TransactionsCtrl">
         <h2>Your Transanctions</h2>
         <div ng-show="{{transactions.length > 0}}">
-          <select class="form-control" name="show-filter" ng-model="selectedState">
-            <option value="completed">Completed</option>
-            <option value="future">Future</option>
-            <option value="">All</option>
+          <select class="form-control" name="show-filter" ng-model="selectedState"
+          ng-options="item.value as item.label for item in items" >
           </select>
           <table style="width: 100%">
             <tr>

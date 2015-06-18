@@ -33,7 +33,7 @@ class AccountsController < ApplicationController
 
 	def index_mentor
 
-		@user = current_user
+		gon.user = current_user.attributes.to_json
 
 	end
 
@@ -103,6 +103,7 @@ class AccountsController < ApplicationController
 
 		end
 
+
 		if current_user.braintree_id == nil
 
 			result = Braintree::Customer.create(
@@ -141,12 +142,11 @@ class AccountsController < ApplicationController
    			merchant_account_id: mentor_merchant_id,
    			payment_method_token: current_user.default_card_id,
    			customer_id: current_user.braintree_id,
-				options: { submit_for_settlement: true, hold_in_escrow: true }
+   			options: { submit_for_settlement: true, hold_in_escrow: true }
 
 		)
 
 		current_transaction_id = result.transaction.id
-
 
 		if result.success?
 
@@ -166,11 +166,17 @@ class AccountsController < ApplicationController
 =begin
  			Rolling transaction back..."
  				cancel_result = Braintree::Transaction.cancel_release(current_transaction_id)
+
  				if cancel_result.success?
+
  					flash[:notice] = "Transaction #{current_transaction_id} cancelled successfully"
+
  				else
+
  					flash[:notice] = "Contact us, transaction #{current_transaction_id} couldn't be cancelled"
+
  				end
+
  			end
 =end
 
@@ -182,14 +188,13 @@ class AccountsController < ApplicationController
 		else
 
 			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
+
 		end
 =end
-
 
   		redirect_to action: :transaction_result
 
 	end
-
 
 	def release_escrow
 
@@ -219,12 +224,17 @@ class AccountsController < ApplicationController
 
 =begin
 	def release_escrow
+
 		result = Braintree::Transaction.release_from_escrow(params[:transaction_id])
+
 		if result.success?
+
 			transaction.update(state: :escrow)
+
+
+
 	end
 =end
-
 
 	def transaction_result
 
@@ -236,74 +246,68 @@ class AccountsController < ApplicationController
 
 	def mentor_save
 
-		result = Braintree::MerchantAccount.create(
+		if params[:account_number] == nil
 
-    		master_merchant_account_id: 'nqfdvdc293c94bnr',
-    		:individual => {
-    			first_name: params[:first_name],
-    			last_name: params[:first_name],
-    			email: params[:email],
-    			:address => {
-      				street_address: params[:street_address],
-      				postal_code: params[:zip_code],
-      				locality: params[:locality],
-      				region: params[:locality]
-    			},
-    		date_of_birth: params[:dob]
-  			},
-  			:funding => {
-    			destination: Braintree::MerchantAccount::FundingDestination::Email,
-    			email: params[:funding_email],
-  			},
-  			:tos_accepted => true
+			result = Braintree::MerchantAccount.create(
 
-  		)
+    			master_merchant_account_id: 'nqfdvdc293c94bnr',
+	    		:individual => {
+    				first_name: params[:first_name],
+    				last_name: params[:first_name],
+    				email: params[:email],
+    				:address => {
+	      				street_address: params[:street_address],
+    	  				postal_code: params[:zip_code],
+      					locality: params[:locality],
+      					region: params[:state]
+	    			},
+    			date_of_birth: params[:dob]
+  				},
+  				:funding => {
+	    			destination: Braintree::MerchantAccount::FundingDestination::Email,
+    				email: params[:funding_email],
+  				},
+  				:tos_accepted => true
 
-
-					else
-
-						result = Braintree::MerchantAccount.create(
-
-			    			master_merchant_account_id: 'nqfdvdc293c94bnr',
-				    		:individual => {
-			    				first_name: params[:first_name],
-			    				last_name: params[:first_name],
-			    				email: params[:email],
-			    				:address => {
-				      				street_address: params[:street_address],
-			    	  				postal_code: params[:zip_code],
-			      					locality: params[:locality],
-			      					region: params[:locality]
-				    			},
-			    			date_of_birth: params[:dob]
-			  				},
-			  				:funding => {
-				    			destination: Braintree::MerchantAccount::FundingDestination::Bank,
-			    				email: params[:funding_email],
-			    				account_number: params[:account_number],
-			    				routing_number: params[:routing_number],
-			  				},
-			  				:tos_accepted => true
-
-				  		)
-
-					end
-
-
-
-  		if result.success?
-
-  			current_user.update(merchant_account_id: result.merchant_account.id)
-
-  			flash[:notice] = "Saved."
+	  		)
 
 		else
 
-			flash[:alert] = "Something is amiss. #{result.errors.each do |error| puts error.message end }"
+			result = Braintree::MerchantAccount.create(
+
+    			master_merchant_account_id: 'nqfdvdc293c94bnr',
+	    		:individual => {
+    				first_name: params[:first_name],
+    				last_name: params[:first_name],
+    				email: params[:email],
+    				:address => {
+	      				street_address: params[:street_address],
+    	  				postal_code: params[:zip_code],
+      					locality: params[:locality],
+      					region: params[:state]
+	    			},
+    			date_of_birth: params[:dob]
+  				},
+  				:funding => {
+	    			destination: Braintree::MerchantAccount::FundingDestination::Bank,
+    				email: params[:funding_email],
+    				account_number: params[:account_number],
+    				routing_number: params[:routing_number],
+  				},
+  				:tos_accepted => true
+
+	  		)
 
 		end
 
-  		redirect_to action: :transaction_result
+			if result.success?
+				current_user.update(merchant_account_id: result.merchant_account.id)
+				render json: { ok: "Saved" }, status: 201
+			else
+				render json: { error: "Something is amiss: #{result.errors.map do |error| error.message end.join(" ")}" }, status: 403
+			end
+
+			# redirect_to action: :transaction_result
 
 	end
 
