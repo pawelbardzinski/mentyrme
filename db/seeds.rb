@@ -52,7 +52,6 @@ TimeSlot.create(start_time: '8:00 PM', end_time: '9:00 PM')
 TimeSlot.create(start_time: '9:00 PM', end_time: '10:00 PM')
 TimeSlot.create(start_time: '10:00 PM', end_time: '11:00 PM')
 
-
 Validation.create(name: 'Verify Your Id', description: 'Lorem ipsome dolor sit amet')
 Validation.create(name: 'Email Address', description: 'Lorem ipsome dolor sit amet', value_label: "Email")
 Validation.create(name: 'Phone Number', description: 'Lorem ipsome dolor sit amet', value_label: "Phone")

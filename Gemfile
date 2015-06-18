@@ -48,7 +48,8 @@ gem 'braintree'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'jazz_hands', github: 'jkrmr/jazz_hands'
+
+  gem 'byebug'
 
   gem 'sqlite3'
 
