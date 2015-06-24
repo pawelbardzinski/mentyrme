@@ -1,0 +1,48 @@
+section.features {
+  .col-stack {
+    padding-left: 0;
+    padding-right: 0;
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      left: auto;
+      right: auto;
+    }
+  }
+  .widget-content {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    text-align: left;
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+    @media (max-width: 991px) {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 0px;
+    }
+  }
+  .features-title {
+    font-family: museo-sans-rounded, sans-serif;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    @media (max-width: 991px) {
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+  .features-copy {
+    color: #82888a;
+  }
+  .features-image {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-right: 5px;
+  }
+
+  .btn {
+    min-width: 175px;
+  }
+
+}

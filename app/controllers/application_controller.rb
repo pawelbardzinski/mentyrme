@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_skill_id
+  layout "home", only: [:main]
 
   protected
 

@@ -1,4 +1,5 @@
 <% @current_availability.each do |idx| %>
+  <% current_periods = idx.get_availability_period_ids %>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading<%= idx.id %>">
@@ -6,20 +7,28 @@
         </div>
         <div id="collapse<%= idx.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= idx.id %>">
           <div class="panel-body checkboxes">
+  
             <% @availability_periods.each do |period| %>
                 <div class="checkbox-row">
                   <label>
-                    <div class="hidden-checkbox-container"><%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][availability_period_ids][]", period.id, (idx.get_availability_period_ids.include? period.id) %></div>
-
+                    <div class="checkbox <% if current_periods.include?(period.id) %> checked-active<% end %>">
+                      <% if current_periods.include?(period.id) %>
+                        <%= image_tag("icons/icon-check.svg") %>
+                      <% end %>
+                    </div>
                     <span class="period"><%= period.name %></span>
+                    <div class="hidden-checkbox-container">
+
+                      <%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][availability_period_ids][]", period.id, (idx.get_availability_period_ids.include? period.id) %>
+                    </div>
                   </label>
                 </div>
             <% end %>
-            <p class="custom-timeslots">
-            <% @time_slots.each do |slot| %>
-              <span class="hidden-checkbox-container"><%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][time_slot_ids][]", slot.id, (idx.get_time_slot_ids.include? slot.id) %></span>
-            <span class="custom-time-slot"><%= slot.start_time.strftime("%l%P") %> - <%= slot.end_time.strftime("%l%P") %></span> 
-            <% end %>
+            <p class="custom-timeslots" <% if current_periods.include?(AvailabilityPeriod.custom_availability_period.id) %>style="display:block;"<% end %>>
+              <% @time_slots.each do |slot| %>
+                <span class="hidden-checkbox-container"><%= check_box_tag "profile[day_availabilities]["+idx[:day_number].to_s+"][time_slot_ids][]", slot.id, (idx.get_time_slot_ids.include? slot.id) %></span>
+              <span class="custom-time-slot"><%= slot.start_time.strftime("%l%P") %> - <%= slot.end_time.strftime("%l%P") %></span> 
+              <% end %>
             </p>
           </div>
         </div>

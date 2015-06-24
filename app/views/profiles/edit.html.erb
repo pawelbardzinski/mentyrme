@@ -1,7 +1,7 @@
 <% body_class "page-edit-profile" %>
 
 <!--main-content-->
-<div class="container main-content">
+<div class="container main-content with-title">
 
   <%= flash_messages %>
 
@@ -30,17 +30,20 @@
     <div class="col-sm-9 main">
 
         <!-- container-mentor-onboard  -->
-        <div class="container-mentor-onboard container">
+        <div class="container-mentor-onboard container about has-title">
 
-            <h1>Edit Your Info</h1>
+            <div class="inner-title">About You</div>
 
-            <p>
-            Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
-            </p>
+            <div class="inner-content">
+                <h1>Edit Your Info</h1>
 
-            <%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
-            <%= render "/_shared/profile_partials/about_you", f: f %>
+                <p>
+                Share your skills by mentoring, coaching & teaching others who want to learn. It's your expertise, so you set your rate and make some cash.
+                </p>
 
+                <%= simple_form_for @profile, url: profile_path, method: :put do |f| %>
+                <%= render "/_shared/profile_partials/about_you", f: f %>
+            </div><!-- /.inner-content -->
         </div><!-- /.container-mentor-onboard -->
         <p>
             <%= f.submit "Save Changes", class: "button3d" %>

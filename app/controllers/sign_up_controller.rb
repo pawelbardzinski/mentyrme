@@ -24,9 +24,9 @@ class SignUpController < ApplicationController
 	
 	def select_skill_category
 		@skill = current_user.profile.skills.first
-		@skill.category = Category.new
+		@skill.category = Category.new if @skill.category.nil?
 		@categories = Category.includes(:tags).order(:name)
-		@current_tag_ids = []
+		@current_tag_ids = @skill.tags.pluck(:id)
 
 		@panel_ids = []
 	  @categories.each do |category|

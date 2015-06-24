@@ -1,0 +1,33 @@
+.page-home {
+
+  section {
+    padding-top: 100px;
+    padding-bottom: 125px;
+    background-color: white;
+    text-align: center;
+
+    h1 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-family: Roboto, sans-serif;
+        color: #262626;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 500;
+    }
+    h2 {
+      font-family: Roboto, sans-serif;
+    }
+
+    .tagline {
+      color: #82888a;
+      font-size: 26px;
+      line-height: 36px;
+      font-weight: 100;
+      margin: 0 0 50px;
+      font-family: Roboto, sans-serif;
+    }
+  }
+
+}
+

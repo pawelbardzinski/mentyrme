@@ -1,0 +1,48 @@
+.container-mentor-onboard {
+	&.verification {
+        .row {
+          margin-bottom: 50px;
+          font-weight: 300;
+        }
+		.validation-name {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: #82888a;
+          font-weight: 300;
+        }
+	}
+    &.photos {
+      .input-group-btn {
+        margin-bottom: 10px;
+        display: block;
+      }
+      .input-group {
+        @media (max-width: $screen-sm) {
+          margin: 0 auto 25px;
+        }
+      }
+      input[type="submit"] {
+        @media (max-width: $screen-sm) {
+          margin-bottom: 25px;
+        }
+      }
+      .row {
+        margin-bottom: 50px;
+        @media (max-width: $screen-sm) {
+          margin-bottom: 0;
+          .col {
+            text-align: center;
+          }
+        }
+      }
+      .gallery-row {
+        .col {
+          text-align: center;
+          @media (max-width: $screen-sm) {
+            margin-bottom: 25px;
+          }
+
+        }
+      }
+    }
+}

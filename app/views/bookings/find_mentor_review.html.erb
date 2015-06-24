@@ -5,7 +5,7 @@
   <nav class="tabs">
     <ul class="row">
       <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
-      <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+      <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Date &amp; Time</a></li>
 	  <li><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
 	  <li class="active"><a class="col-md-3" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_review' %>">Review</a></li>
     </ul>
@@ -22,13 +22,13 @@
     </ul>
     <div class="session-details">
         <strong>Description:<br></strong>
-        <p>BOOKINGDeSC Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+        <p>BOOKING DESC Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
 
         <strong>Session Details:<br></strong>
         <p>
-          BOOKING LLCAITNS 311 Main Street. Beverly Hills, CA 90210 <br>
-          Saturday, May 23rd from 10:00am - 11:00am <br>
-          $75 per session
+			<%= @location %> <br/>
+			<%= @datetime %> <br/>
+			<%= @mentor_cost %>
         </p>
     </div>
 

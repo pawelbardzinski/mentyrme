@@ -28,20 +28,23 @@
 
     <div class="col-sm-9 main">
 
-      <!-- container-mentor-onboard  -->
-      <div class="container-mentor-onboard container">
-        <h2>What would you like to teach?</h2>
+        <!-- container-mentor-onboard  -->
+        <div class="container-mentor-onboard container has-title skills">
+
+            <div class="inner-title">Services</div>
+
+            <div class="inner-content">
+                <h1 class="gutter-bot">What would you like to teach?</h1>
+
+                <%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
+
+                <%= render "/_shared/profile_partials/skill_category", f: f %>
+            </div><!-- /.inner-content -->
+        </div><!-- /.container-mentor-onboard -->
         <p>
-          Choose a category
+        <%= f.submit "Save Changes", class: "button3d" %>
+        <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
         </p>
-
-        <%= form_for @skill, url: profile_skill_path(@skill.id), method: :put do |f| %>
-
-            <%= render "/_shared/profile_partials/skill_category", f: f %>
-            </div><!-- /.container-mentor-onboard -->
-            <p>
-              <%= f.submit "Save Changes", class: "button3d" %>
-            </p>
         <% end %>
         </div><!-- /.col-sm-9 main" -->
 

@@ -27,6 +27,14 @@ p {
   &.orange {
     @include button3d($orange);
   }
+  &.btn-gray{
+    @include button3d(#82888a);
+  }
+  &.btn-white{
+    @include button3d(#fff);
+    border-bottom-color: transparent;
+    color: #faab2e;
+  }
   &.btn-facebook {
     @include button3d($facebook-blue);
     width: 100%;
@@ -35,6 +43,7 @@ p {
     @include button3d($google-red);
     width: 100%;
   }
+
   &.btn-linkedin{
     @include button3d($linkedin-blue);
     width: 100%;

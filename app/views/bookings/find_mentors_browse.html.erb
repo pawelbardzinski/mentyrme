@@ -39,7 +39,7 @@
               <div class="mentor-card"><div class="card-cover">
                 <img class="card-cover-image" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550c61723be9b4803f8cc7e0_mentor-cover-5.jpg" width="300"></div>
                 <%= link_to public_profile_path(mentor.profile)  do %>
-                  <img class="card-profile" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550b51285b7ee5ba660e4e75_avatar-1.png" width="100">
+                  <%= image_tag mentor.profile.get_avatar_image, class: "card-profile", width: '100px' %>
                 <% end %>
                 <a class="w-inline-block link-block" href="/public-profile"></a>
                 <div class="card-copy"><a class="w-inline-block link-block" href="/public-profile"></a>
@@ -48,26 +48,26 @@
                   <% end %>
                   <div><%= mentor.profile.one_line_description %></div>
                 </div>
-                <div class="card-stats-row row">
-                    <div class="col-xs-4">
-                      <div class="card-stats">
-                        <div class="card-number">5</div>
-                        <div>Services</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-4">
-                      <div class="card-stats">
-                        <div class="card-number">5</div>
-                        <div>Sessions</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-4">
-                      <div class="card-stats">
-                        <div class="card-number">9.5</div>
-                        <div>Rating</div>
-                      </div>
-                    </div>
-                </div>
+	            <div class="card-stats-row row">
+	              <div class="col-xs-4">
+	                <div class="card-stats">
+	                  <div class="card-number"><%= mentor.profile.get_number_of_services %></div>
+	                  <div>Services</div>
+	                </div>
+	              </div>
+	              <div class="col-xs-4">
+	                <div class="card-stats">
+	                  <div class="card-number"><%= mentor.teaching_bookings.size %></div>
+	                  <div>Sessions</div>
+	                </div>
+	              </div>
+	              <div class="col-xs-4">
+	                <div class="card-stats">
+	                  <div class="card-number">9.5</div>
+	                  <div>Rating</div>
+	                </div>
+	              </div>
+	            </div>
                 <%= form_for :booking, :url => booking_find_mentor_details_path, method: :post do |f| %>
 
                     <%= hidden_field_tag 'booking[mentor_id]', mentor.id %>

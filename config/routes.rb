@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#main'
-  devise_for :users, controllers: {registrations: 'users/registrations'}
 
+  devise_for :users, controllers: {registrations: 'users/registrations'}
   devise_scope :user do
     get "change-password", to: "users/registrations#edit_password", as: "change_password"
     put "change-password", to: "users/registrations#update_password", as: "update_password"
   end
+  
+  authenticated :user do
+    root :to => "dashboard#index", :as => "authenticated_root"
+  end
+
+  root 'pages#main'
 
   get 'sign_up/start',         to: "sign_up#sign_up_type_selection",     as: "sign_up_type_selection"
   get 'sign_up/select',        to: "sign_up#user_type_selection",        as: "sign_up_user_type_selection"

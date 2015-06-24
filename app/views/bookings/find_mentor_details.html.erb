@@ -5,7 +5,7 @@
   <nav class="tabs">
   <ul class="row">
     <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
-    <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+    <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Date &amp; Time</a></li>
     <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
 	
   </ul>
@@ -24,8 +24,11 @@
     <div class="session-details">
       <strong>Description:<br></strong>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
-      <strong>Description:<br></strong>
-      <p>$75 per session</p>
+      <strong>Session Details:<br></strong>
+      <p><%= number_to_currency(@mentor.profile.get_rate_amount) %> <%= @mentor.profile.get_rate_type %></p>
+	  
+	  
+	  
     </div>
     <%= form_for :booking, :url => booking_find_mentor_locations_path do |f| %>
 

@@ -51,9 +51,8 @@ set :default_environment, {
 
 default_run_options[:pty] = true
 
-# 50.112.187.3 for Development
-# 52.25.139.195 for Dev-Test
-server '50.112.187.3', :app, :web, :db, :primary => true
+# 52.24.114.168 for Development
+server '52.24.114.168', :app, :web, :db, :primary => true
 
 
 	desc "get database.yml"
@@ -64,6 +63,11 @@ server '50.112.187.3', :app, :web, :db, :primary => true
 	desc "move it up a folder"
 	task :copy do
 		run 'cp -r /srv/www/current/* /srv/www/mentyrme'
+	end
+
+	desc "load payment test data"
+	task :load_demo_data do
+		run 'rake app:load_demo_data'
 	end
 
 	desc "restart web server"

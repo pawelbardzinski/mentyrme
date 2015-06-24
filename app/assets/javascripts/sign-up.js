@@ -15,16 +15,6 @@ signUp.availability = function() {
 			return;
 		}
 
-		//set up listener for timeslot links
-		$('.checkbox-row .hidden-checkbox-container').each(function() {
-			var $this = $(this);
-			$this.after('<div class="checkbox"></div>');
-			var $fakeBox = $($this.next('.checkbox'));
-			var realBox = $this.html();
-			$this.remove();
-			$fakeBox.next('.period').after('<div class="hidden-checkbox-container">' + realBox + '</div>');
-		});
-
 		$('.checkbox').bind('click', _checkBoxListener);
 		src = $('.checked-src').attr('src');
 		$('.custom-timeslots').prev().find('.checkbox').bind('click', _toggleCustomTimes);
@@ -52,9 +42,9 @@ signUp.availability = function() {
 	function _checkBoxListener() {
 		var $this = $(this);
 		var $input = $this.siblings('.hidden-checkbox-container').find('input');
-		if ($input.attr('checked') == 'checked') {
+		if ($input.is(':checked')) {
 			$this.html('');
-			$input.removeAttr('checked');
+			$input.checked = false;
 			$this.removeClass('checked-active');
 		}
 		else {
@@ -64,7 +54,7 @@ signUp.availability = function() {
 				$this.parent().parent().siblings().each(function() {
 					var $otherCheckboxWrapper = $(this);
 					$otherCheckboxWrapper.find('.checkbox').removeClass('checked-active');
-					$otherCheckboxWrapper.find('input').removeAttr('checked');
+					$otherCheckboxWrapper.find('input').checked = false;
 				});
 			}
 			//If not All Day or Custom, make sure All Day and Custom are not checked.
@@ -80,13 +70,13 @@ signUp.availability = function() {
 					if (otherLabel.indexOf('All Day') > -1 || otherLabel.indexOf('Custom') > -1) {
 						$otherCheckBox.html('');
 						$otherCheckBox.removeClass('checked-active');
-						$otherCheckBox.siblings('.hidden-checkbox-container').find('input').removeAttr('checked');
+						$otherCheckBox.siblings('.hidden-checkbox-container').find('input').checked = false;
 					}
 				});
 			}
 			$this.addClass('checked-active');
 			$this.html('<img src="' + src + '" alt="checked">');
-			$input.attr('checked', 'checked');
+			$input.checked = true;
 		}
 	}
 	function _checkBoxListener2() {
@@ -125,7 +115,7 @@ signUp.availability = function() {
 			$(this).find('input[type="checkbox"]').each(function() {
 				var $this = $(this), $next = $this.parent().next('.custom-time-slot'), text = $next.html(), checked = '';
 				$this.attr('data-id', 'custom-time-' + customCtr);
-				if ($this.attr('checked') == 'checked') {
+				if ($this.is(':checked')) {
 					checked = ' checked';
 				}
 				$next.remove();
@@ -144,7 +134,7 @@ signUp.availability = function() {
 			}
 			else {
 				$this.addClass('checked');
-				$input.attr('checked', 'checked');
+				$input.attr('checked','checked');
 			}
 		});
 	}
@@ -186,13 +176,13 @@ signUp.aboutYou = function() {
 		var $input = $this.siblings('.hidden-checkbox-container').find('input');
 		if ($input.attr('checked') == 'checked') {
 			$this.html('');
-			$input.removeAttr('checked');
+			$input.checked = false;
 			$this.removeClass('checked-active');
 		}
 		else {
 			$this.addClass('checked-active');
 			$this.html('<img src="' + src + '" alt="checked">');
-			$input.attr('checked', 'checked');
+			$input.checked = true;
 		}
 	}
 }
@@ -217,7 +207,6 @@ signUp.services = function() {
 	//Set up any checkbox interactivity we need
 	function _setUpCheckBoxes() {
 		//set up listener for timeslot links
-		$('.checkbox-row label').prepend('<div class="checkbox"></div>');
 		$('.checkbox').bind('click', _checkBoxListener);
 		src = $('.checked-src').attr('src');
 	}
@@ -245,23 +234,23 @@ signUp.services = function() {
 		$('.category-panel-group').on('hidden.bs.collapse', function () {
 		  $('div.checkbox').html('');
 			$('div.checkbox').removeClass('checked-active');
-			$('.skill-category-tag').removeAttr('checked');
+			$('.skill-category-tag').checked = false;
 		});
 	}
 	
 	//Listener for when .checkbox divs are checked. Add checked icon and alter real checkbox
 	function _checkBoxListener() {
 		var $this = $(this);
-		console.log('check');
+
 		var $input = $this.next().find('input');
-		if ($input.attr('checked') == 'checked') {
+		if ($input.is(':checked')) {
 			$this.html('');
-			$input.removeAttr('checked');
+			$input.checked = false;
 			$this.removeClass('checked-active');
 		}
 		else {
 			$this.html('<img src="' + src + '" alt="checked">');
-			$input.attr('checked', 'checked');
+			$input.checked = true;
 			$this.addClass('checked-active');
 		}
 	}

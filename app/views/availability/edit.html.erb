@@ -29,17 +29,24 @@
     <div class="col-sm-9 main">
 
       <!-- container-mentor-onboard  -->
-      <div class="container-mentor-onboard container">
-        <h1>Availability</h1>
+      <div class="container-mentor-onboard availability has-title">
+        <div class="inner-title">Services</div>
 
-        <%= form_tag update_availability_profile_path, method: :put do |f| %>
+        <div class="inner-content">
+            <h1 class="gutter-bot">Availability</h1>
 
-            <%= render "/_shared/profile_partials/availability", f: f %>
-            </div><!-- /.container-mentor-onboard -->
-            <p>
-              <%= submit_tag"Save Changes", class: "button3d" %>
-            </p>
-        <% end %>
+            <%= form_tag update_availability_profile_path, method: :put do |f| %>
+
+                <%= render "/_shared/profile_partials/availability", f: f %>
+              </div><!-- /.inner-content" -->
+                </div><!-- /.container-mentor-onboard -->
+                <p>
+                  <%= hidden_field_tag 'during_registration', true %>
+                  <%= submit_tag"Save Changes", class: "button3d" %>
+                  <%= image_tag("icons/icon-check.svg", size: 22, class: 'checked-src') %>
+                </p>
+            <% end %>
+
         </div><!-- /.col-sm-9 main" -->
 
   </div><!-- /.row -->

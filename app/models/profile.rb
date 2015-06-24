@@ -40,11 +40,41 @@ class Profile < ActiveRecord::Base
     end
   end
   
-  
+	def get_number_of_services
+		get_skill.tags.size
+	end  
 
+	def get_employer
+		self.employer.blank? ? 'N/A' : self.employer
+	end
 
+	def get_school
+		self.school.blank? ? 'N/A' : self.school
+	end
 
-  
+	def get_languages 
+		self.languages.blank? ? 'N/A' : self.languages
+	end	
+
+	def get_about_me
+		self.about_me.blank? ? 'N/A' : self.about_me
+	end
+
+	def get_sales_pitch
+		self.sales_pitch.blank? ? 'N/A' : self.sales_pitch
+	end
+
+	def when_joined
+		self.created_at.strftime("%B %Y")
+	end
+
+  def get_avatar_image
+  	if self.avatar.nil?
+  		"user_avatar_placeholder_image.png"
+  	else
+  		self.avatar.image_file.blank? ? "user_avatar_placeholder_image.png" : self.avatar.image_file.url(:thumb)
+  	end
+  end
   
 
 	def has_an_avatar?

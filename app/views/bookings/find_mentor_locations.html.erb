@@ -5,7 +5,7 @@
   <nav class="tabs">
     <ul class="row">
       <li><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_details' %>">Basics</a></li>
-      <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Location &amp; Time</a></li>
+      <li class="active"><a class="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_locations' %>">Date &amp; Time</a></li>
       <li><a classs="col-md-4" href="<%=  url_for :controller => 'bookings', :action => 'find_mentor_notes' %>">Notes</a></li>
     </ul>
   </nav>
@@ -21,7 +21,7 @@
         <div class="form-group string optional user_first_name">
           <%= f.label :location, "Location" %>
           <div class="get-location">
-          <%= f.text_field :location, autocomplete: "off", class: 'form-control'  %>
+          <%= f.text_field :location, :value => @location, autocomplete: "off", class: 'form-control'  %>
               <button class="btn btn-default get-location" onclick="getUserLocation();return false;">Get Location</button>
           </div>
         </div>
@@ -39,30 +39,35 @@
               </div>
         </div>
 
+		<% today = Time.now -%>
+		<% one = Time.now + (1*24*60*60) -%>
+		<% two = Time.now + (2*24*60*60) -%>
+		<% three = Time.now + (3*24*60*60) -%>
+		<% four = Time.now + (4*24*60*60) -%>
+		<% five = Time.now + (5*24*60*60) -%>
+		<% six = Time.now + (6*24*60*60) -%>
+		
+		<% today.strftime('%x') -%>
+		
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group string optional">
                 <label for="exampleInputName2">Date</label>
-                <select class="form-control">
-                  <option>Date</option>
-                  <option>Date</option>
-                  <option>Date</option>
-                  <option>Date</option>
-                  <option>Date</option>
-                  <option>Date</option>
-                </select>
+				
+				
+				
+				<%= f.select :custom_date, options_for_select(["Today", "Tomorrow", two.strftime('%A'), three.strftime('%A'), four.strftime('%A'), five.strftime('%A'), six.strftime('%A')]), {:prompt => 'Date '}, {required: false, autofocus: false, class: 'form-control'} %>
+                
             </div><!-- /input-group -->
           </div><!-- /.col-lg-6 -->
           <div class="col-lg-6">
             <div class="form-group string optional">
               <label for="exampleInputName2">Time</label>
-              <select class="form-control">
-                <option>8:00 – 9:00 AM</option>
-                <option>8:00 – 9:00 AM</option>
-                <option>8:00 – 9:00 AM</option>
-                <option>8:00 – 9:00 AM</option>
-                <option>8:00 – 9:00 AM</option>
-              </select>
+			  
+			  
+			  <%= f.select :custom_time, options_for_select(["8:00 AM – 9:00 AM","9:00 AM – 10:00 AM","10:00 AM – 11:00 AM","11:00 AM – 12:00 PM","12:00 PM – 1:00 PM","1:00 PM – 2:00 PM","2:00 PM – 3:00 PM","3:00 PM – 4:00 PM","4:00 PM – 5:00 PM","5:00 PM – 6:00 PM","6:00 PM – 7:00 PM","7:00 PM – 8:00 PM","8:00 PM – 9:00 PM","9:00 PM – 10:00 PM"]), {:prompt => 'Time '}, {required: false, autofocus: false, class: 'form-control'} %>
+			  
+             
           </div><!-- /input-group -->
           </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->

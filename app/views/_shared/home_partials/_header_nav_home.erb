@@ -1,0 +1,49 @@
+<header>
+    <nav class="navbar navbar-inverse navbar-main">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to(image_tag("logo@2x.png", width: '150px'), root_path, :class=>"navbar-brand") %>
+        </div>
+      <div class="mobile-collapse">
+        <div id="navbar" class="navbar-collapse collapse container" aria-expanded="false" style="height: 1px;">
+              <ul class="nav navbar-nav signed-out">
+                    <li><a  href="#">How It Works</a></li>
+                    <li><a  href="#">Be a Mentor</a></li>
+                    <li><%= link_to "Login", new_user_session_path %></li>
+                    <li class="signup-link"><%= link_to "Sign Up", sign_up_type_selection_path %></li>
+              </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+</header>
+
+<script >
+
+function mobileNav() {
+    if(document.documentElement.clientWidth < 992){
+        $('.navbar-main').removeClass('container')
+        $('.navbar-header').addClass('container')
+    } else {
+        $('.navbar-main').addClass('container')
+        $('.navbar-header').removeClass('container')
+    }
+}
+
+$(document).ready(function() {
+    mobileNav();
+});
+
+$(window).bind('resize', function(event) {
+
+    mobileNav();
+});
+
+
+
+</script>

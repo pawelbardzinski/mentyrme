@@ -1,7 +1,20 @@
+<% if local_assigns[:is_homepage] %>
+
+<% else %>
 <% body_class "page-find-mentor" %>
+<% end %>
+			 			 
 <section class="category-overview">
 
   <h1>Find a Mentor</h1>
+
+<% if local_assigns[:is_homepage] %>
+  Who do you want to learn from?
+<% else %>
+<% end %>
+
+
+
 
   <% @categories.in_groups_of(3).each do |category| %>
 
@@ -9,11 +22,24 @@
         <% category.each do |category| %>
         <div class="text-center col-sm-4">
 
-              <%= link_to booking_find_mentor_basics_path(category_url_slug: category.url_slug), { :class => category.name.downcase.gsub(" ", "-") + " category-widget", :title=> category.name } do %>
-
+			 <% if local_assigns[:is_homepage] %>
+			   
+ 			  <%= link_to booking_find_mentor_basics_path(category_url_slug: category.url_slug), { :class => category.name.downcase.gsub(" ", "-") + " category-widget", :title=> category.name } do %>
+                   <div><h2><%= category.name %></h2> </div>
+               <% end %>
+			   
+			   
+			   
+			 <% else %>
+			  <%= link_to booking_find_mentor_basics_path(category_url_slug: category.url_slug), { :class => category.name.downcase.gsub(" ", "-") + " category-widget", :title=> category.name } do %>
                   <div><h2><%= category.name %></h2> </div>
-
               <% end %>
+			 <% end %>
+			 
+			 
+              
+
+                 
         </div>
         <% end %>
       </div>

@@ -21,7 +21,7 @@
               </ul>
 
               <div class="navbar-right">
-                <a class="avatar-nav visible-md-inline-block visible-lg-inline-block" href="#"><%= image_tag("avatar/avatar.png", width: '125px') %></a>
+                <a class="avatar-nav visible-md-inline-block visible-lg-inline-block" href="#"><%= image_tag current_user.profile.get_avatar_image, width: '125px' %></a>
                 <a class="name-nav visible-md-inline-block visible-lg-inline-block" href=""><%= current_user.first_name %></a>
                 <a class="chat-icon-nav visible-md-inline-block visible-lg-inline-block" href="#"><%= image_tag("icons/icon-chat.svg", width: '30px') %></a>
                 <%= link_to "Find a Mentor", find_mentor_path, class: "btn btn-default orange" %>
@@ -55,7 +55,9 @@
                     <li><a class="visible-md-inline-block visible-lg-inline-block" href="#dashboard">Dashboard</a></li>
                     <li><%= link_to "My Sessions", my_sessions_path %></li>
                     <li><a href="#messages">Messages</a></li>
-                    <li><%= link_to "Profile", edit_profile_path %></li>
+                    <% if current_user.is_mentor? %>
+                      <li><%= link_to "Profile", edit_profile_path %></li>
+                    <% end %>
                     <li><%= link_to "Account", edit_user_registration_path %></li>
               </ul>
             </div><!--/.nav-collapse -->

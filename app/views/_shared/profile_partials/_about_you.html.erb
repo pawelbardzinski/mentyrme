@@ -40,6 +40,15 @@
 		</div>
 	</div>
 	<div class="row form-group">
+		<%= f.label :about_me, "Describe Yourself", class: 'col-md-3' %>
+		<div class="col-md-9">
+			<%= f.input :about_me, label: false, placeholder: "Write something..." %>
+			<p class="description">
+				Maecenas vulputate tristique sollicitudin. Sed non lacus egestas, sagittis lorem.
+			</p>
+		</div>
+	</div>
+	<div class="row form-group">
 		<%= f.label :expertise_description, "Describe Your Expertise", class: 'col-md-3' %>
 		<div class="col-md-9">
 			<%= f.input :expertise_description, label: false, placeholder: "Write something..." %>

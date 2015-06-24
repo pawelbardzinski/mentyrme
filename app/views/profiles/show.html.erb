@@ -35,7 +35,8 @@
   <div class="container welcome">
     <div class="row">
       <div class="col-sm-2 col">
-        <%= image_tag("avatar/avatar-2.png", class: "avatar-welcome", width: '125px') %>
+        <%= image_tag @profile.get_avatar_image, class: "avatar-welcome", width: '125px' %>
+        
       </div>
       <div class="col-sm-7 col">
         <div class="welcome-text">
@@ -57,11 +58,11 @@
         <div class="welcome-stats">
           <div class="row">
             <div class="col-sm-6 col">
-              <div class="welcome-number">2</div>
+              <div class="welcome-number"><%= @profile.get_number_of_services %></div>
               <div class="welcome-label">Services</div>
             </div>
             <div class="col-sm-6 col">
-              <div class="welcome-number">9</div>
+              <div class="welcome-number"><%= @number_of_sessions %></div>
               <div class="welcome-label">Sessions</div>
             </div>
           </div>
@@ -116,23 +117,24 @@
           <div class="card-cover">
             <img class="card-cover-image" src="http://uploads.webflow.com/54ff3884a8d47afa0c424404/550c61723be9b4803f8cc7e0_mentor-cover-5.jpg" width="300">
           </div>
-              <img class="card-profile" src="/assets/avatar/avatar-2-c4679d1d93cf39c7e6530213f66a412ad7b162ec6776d26fefc4b24ee79281fc.png" alt="Avatar 2 c4679d1d93cf39c7e6530213f66a412ad7b162ec6776d26fefc4b24ee79281fc.png" width="100">
+              
+              <%= image_tag @profile.get_avatar_image, class: "card-profile", width: '100px' %>
 
           <a class="w-inline-block link-block" href="/public-profile"></a>
           <div class="card-copy"><a class="w-inline-block link-block" href="/public-profile"></a>
-            <h3>Albert Borland</h3>
-            <div>Maecenas vulputate tristique</div>
+            <h3><%= @mentor.full_name %></h3>
+            <div><%= @profile.one_line_description %></div>
           </div>
           <div class="card-stats-row row">
             <div class="col-xs-4">
               <div class="card-stats">
-                <div class="card-number">5</div>
+                <div class="card-number"><%= @profile.get_number_of_services %></div>
                 <div>Services</div>
               </div>
             </div>
             <div class="col-xs-4">
               <div class="card-stats">
-                <div class="card-number">5</div>
+                <div class="card-number"><%= @number_of_sessions %></div>
                 <div>Sessions</div>
               </div>
             </div>

@@ -7,7 +7,28 @@
 	padding: 50px;
 	border: 1px solid $gray-light;
 	background-color: $white;
+    &.has-title {
+      padding: 0;
+    }
+    .inner-title {
+      padding: 15px 25px;
+      border-bottom: 1px solid #e6e6e6;
+      background-color: #f0f0f0;
+      color: #82888a;
+      @media (max-width: $screen-sm) {
+        text-align: center;
+      }
+    }
+    .inner-content {
+      padding: 50px;
+      h1.gutter-bot {
+        margin-bottom: 60px;
+      }
+      h1 + p {
+        margin-bottom: 50px;
+      }
 
+    }
 	h1 {
 		margin: 0 auto 10px;
         @media (max-width: $screen-sm) {

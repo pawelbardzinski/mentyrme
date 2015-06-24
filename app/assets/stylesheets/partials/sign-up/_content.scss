@@ -10,6 +10,9 @@
 	}
 	&.about {
 		padding: 50px;
+        &.has-title {
+          padding: 0;
+        }
 
 		form {
 			color: $input-color;

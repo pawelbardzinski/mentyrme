@@ -1,14 +1,12 @@
 <% @photos.in_groups_of(3, false) do |row_photos| %>
 
-  <div class="row">
-    <div class="row profile-gallery">
-      <% for photo in row_photos %>
-        <div class="col-sm-4 col">
-          <%= image_tag photo.image_file.blank? ? "user_avatar_placeholder_image.png" : photo.image_file.url(:thumb) %>
-        </div>
-      <% end %>
+<div class="row gallery-row">
+  <% for photo in row_photos %>
+    <div class="col-sm-4 col">
+      <%= image_tag photo.image_file.blank? ? "user_avatar_placeholder_image.png" : photo.image_file.url(:thumb) %>
     </div>
-  </div>
+  <% end %>
+</div>
 
 <% end %>
       

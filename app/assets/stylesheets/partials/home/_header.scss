@@ -1,0 +1,40 @@
+.page-home {
+  header {
+    margin-bottom: 0;
+    position: absolute;
+    z-index: 1000000;
+    top: 0;
+    width: 100%;
+  }
+  @media (max-width: $screen-md) {
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle {
+      background-color: transparent;
+      border: 0;
+      margin-top: 16px;
+    }
+  }
+  .mobile-collapse {
+    @media (max-width: $screen-md) {
+      background-color: $white;
+    }
+  }
+  .navbar {
+    &.navbar-main, &.navbar-main .navbar-collapse {
+      border: 0;
+      background-color: transparent;
+      @media (min-width: $screen-md) {
+        a:hover {
+          background: transparent;
+        }
+        li a {
+          color: $white;
+        }
+        li.signup-link a {
+          color: #faab2e;
+        }
+      }
+    }
+  }
+
+}
+

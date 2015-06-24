@@ -261,7 +261,7 @@ class AccountsController < ApplicationController
 	      				street_address: params[:street_address],
     	  				postal_code: params[:zip_code],
       					locality: params[:locality],
-      					region: params[:state]
+      					region: params[:locality]
 	    			},
     			date_of_birth: params[:dob]
   				},
@@ -286,7 +286,7 @@ class AccountsController < ApplicationController
 	      				street_address: params[:street_address],
     	  				postal_code: params[:zip_code],
       					locality: params[:locality],
-      					region: params[:state]
+      					region: params[:locality]
 	    			},
     			date_of_birth: params[:dob]
   				},

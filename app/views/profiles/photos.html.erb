@@ -1,4 +1,4 @@
-<% body_class "page-edit-profile" %>
+<% body_class "page-edit-photos" %>
 
 <!--main-content-->
 <div class="container main-content">
@@ -29,16 +29,33 @@
     <div class="col-sm-9 main">
 
       <!-- container-mentor-onboard  -->
-      <div class="container-mentor-onboard container">
-        <h2>Photo Gallery</h2>
-        <%= simple_form_for @photo, url: profile_skill_photo_path(@skill), method: :post do |f| %>
-          <p>
-            <%= f.label :image_file, "Profile Photo" %>
-            <%= f.input :image_file, as: :file, label: false %>
-          </p>
-          <%= f.submit "Add Photo" %>
-        <% end %>
-        <%= render "/_shared/profile_partials/photos" %>
+      <div class="container-mentor-onboard container has-title photos">
+
+        <div class="inner-title">Your Photos</div>
+
+        <div class="inner-content">
+            <div class="row">
+                <div class="col-sm-6 col">
+                    <h1>Photo Gallery</h1>
+                  <%= simple_form_for @photo, url: profile_skill_photo_path(@skill), method: :post do |f| %>
+                      <div class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Choose File <%= f.input :image_file, as: :file, label: false %>
+                        </span>
+                    </span>
+                        <!--<input type="text" class="form-control" readonly>-->
+                        <div class="file-name"></div>
+                      </div>
+                </div>
+                <div class="col-sm-6 col">
+                    <%= f.submit "Upload Photo", class: "btn" %>
+                    <% end %>
+                </div>
+            </div>
+            <%= render "/_shared/profile_partials/photos" %>
+        </div><!-- /.inner-content -->
+
       </div><!-- /.container-mentor-onboard -->
 
         </div><!-- /.col-sm-9 main" -->
@@ -46,3 +63,29 @@
   </div><!-- /.row -->
 
 </div><!-- /.container main-content -->
+<script>
+    $(document).on('change', '.btn-file :file', function() {
+        var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+
+    $(document).ready( function() {
+        $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+            var fileName = $(".file-name");
+            if( fileName ) {
+                fileName.html(log);
+            } else if (input.length ) {
+                 alert(log);
+            }
+            else {
+                if( log ) alert(log);
+            }
+
+        });
+    });
+</script>

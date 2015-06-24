@@ -38,10 +38,10 @@ gem 'simple_form'
 gem 'pundit'
 gem 'braintree'
 
-gem 'dotenv-rails'
 gem 'capistrano', '~> 2.15.5'
 gem 'rvm-capistrano', require: false
 gem 'aasm'
+gem 'chronic'
 
 # gem 'twitter-bootstrap-rails'
 
@@ -56,8 +56,6 @@ gem 'aasm'
 
 group :development, :test do
   gem 'byebug'
-
-  gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

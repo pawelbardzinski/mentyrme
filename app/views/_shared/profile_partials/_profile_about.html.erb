@@ -1,28 +1,23 @@
 <div class="detail-row">
     <h3>More About Me</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
-    <p>faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.</p>
+      <p><%= @profile.get_about_me %></p>
 </div>
 
 <div class="detail-row">
     <h3>My Expertise</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis
-    cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh
-    et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+    <p><%= @profile.expertise_description %></p>
 
     <ul class="pills no-border">
-      <li>Home Improvement</li>
-      <li>Tiling</li>
-      <li>Flooring</li>
-      <li>Dog Training</li>
+      <% @profile.get_skill.tags.each do |tag| %>
+        <li><%= tag.name %></li>
+      <% end %>
     </ul>
 </div>
 
 <div class="detail-row">
     <h3>Why I Love Mentoring</h3>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
-    <p>faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.</p>
+    <p><%= @profile.get_sales_pitch %></p>
 </div>
 
  <%= form_for :booking, :url => booking_find_mentor_details_path, method: :post do |f| %>
@@ -31,6 +26,6 @@
 
     <%= button_tag(type: 'submit', class: "button3d btn-block") do %>
         <span class="hire-action">Hire Me &nbsp;</span>
-        <span class="hire-rate"><%= number_to_currency(@mentor.profile.get_rate_amount) %> / <%= @mentor.profile.get_rate_type %></span>
+        <span class="hire-rate"><%= number_to_currency(@profile.get_rate_amount) %> / <%= @profile.get_rate_type %></span>
     <% end %>
 <% end %>

@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
 
 
 	def update
-
 		respond_to do |format|
 			# if successfully saved
       if @profile.update(update_params)
@@ -38,9 +37,9 @@ class ProfilesController < ApplicationController
 
 
 	def show
-		@mentor = @profile.user
 		@photos = @profile.get_skill.photos if @profile.get_skill
-    
+		@mentor = @profile.user
+    @number_of_sessions = @mentor.teaching_bookings.size
     if session[:is_booking_in_progress] == 1
       @booking = Booking.new
     end
@@ -64,10 +63,11 @@ class ProfilesController < ApplicationController
     else
       @profile = Profile.joins(:user).find(current_user.profile.id)
     end
+    authorize @profile
 	end
 
 	def update_params
-    params.require(:profile).permit( :one_line_description, :expertise_description, :sales_pitch, :employer, :school, :languages, avatar_attributes: [:id, :image_file], skills_attributes:  [:id, rate_attributes: [:id, :amount, :type]])
+    params.require(:profile).permit( :one_line_description, :about_me, :expertise_description, :sales_pitch, :employer, :school, :languages, avatar_attributes: [:id, :image_file], skills_attributes:  [:id, rate_attributes: [:id, :amount, :type]])
   end
 
 end

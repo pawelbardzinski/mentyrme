@@ -1,4 +1,4 @@
-<% body_class "page-edit-profile" %>
+<% body_class "page-edit-verification" %>
 
 <!--main-content-->
 <div class="container main-content">
@@ -29,34 +29,33 @@
     <div class="col-sm-9 main">
 
       <!-- container-mentor-onboard  -->
-      <div class="container-mentor-onboard container">
+      <div class="container-mentor-onboard container has-title verification">
+        <div class="inner-title">Your Verifications</div>
+        <div class="inner-content">
+            <h2>Get Verified</h2>
+            <p class="gutter-bot">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+            </p>
 
-        <h2>Get Verified</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-        </p>
-
-
-        <table>
-          <% @validations.each do |validation| %>
-              <tr>
-                <td><%= validation.name %></td>
-                <td>
-                  <p><%= validation.description %></p>
-                  <% if @user_validation_ids.include?(validation.id) %>
-                      <p style="font-weight: bold">
-                        <%= validation.label_value.nil? ? "" : validation.value_label + ": "%>
-                        <%= Verification.getValidationValue(@verifications, validation.id) %>
-                      </p>
-                  <% else %>
-                      <%= link_to "Verify Me", "", class: "btn btn-danger" %>
-                  <% end %>
-                </td>
-              </tr>
-          <% end %>
-        </table>
-
-
+            <% @validations.each do |validation| %>
+                <div class="row">
+                  <div class="col-sm-3 validation-name">
+                    <%= validation.name %>
+                  </div>
+                  <div class="col-sm-9">
+                    <p><%= validation.description %></p>
+                    <% if @user_validation_ids.include?(validation.id) %>
+                        <p style="font-weight: bold">
+                          <%= validation.label_value.nil? ? "" : validation.value_label + ": "%>
+                          <%= Verification.getValidationValue(@verifications, validation.id) %>
+                        </p>
+                    <% else %>
+                        <%= link_to "Verify Me", "", class: "btn btn-gray" %>
+                    <% end %>
+                  </div>
+                </div>
+            <% end %>
+        </div>
       </div><!-- /.container-mentor-onboard -->
 
     </div><!-- /.col-sm-9 main" -->

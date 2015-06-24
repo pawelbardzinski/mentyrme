@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
+  has_many :teaching_bookings, :class_name => "Booking", :foreign_key => "mentor_id", dependent: :destroy
+  has_many :learning_bookings, :class_name => "Booking", :foreign_key => "mentee_id", dependent: :destroy
 
   before_create :add_profile
   after_initialize :set_default_role, :if => :new_record?
